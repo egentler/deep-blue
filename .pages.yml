@@ -1,0 +1,76 @@
+# Pages CMS editing interface for Deep Blue
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  rename: safe
+content:
+  - name: posts
+    label: Student work
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      fields: [title, date, category, author]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title of piece
+        type: string
+        required: true
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values: [Writing, Photography, Visual Art]
+      - name: author
+        label: Byline (use approved name or anonymous credit)
+        type: string
+      - name: summary
+        label: Short description for the homepage
+        type: text
+      - name: preview
+        label: Text preview (especially for writing)
+        type: text
+        description: Optional few lines used on the homepage when no cover image is provided
+      - name: cover
+        label: Photo or artwork
+        type: image
+        description: Upload the actual image; optional for writing
+      - name: medium
+        label: Medium / caption
+        type: string
+        description: Optional, for example Oil on canvas or Digital photograph
+      - name: sample
+        label: Sample entry (mark true for placeholders only)
+        type: boolean
+        default: false
+      - name: body
+        label: Full text / artist statement
+        type: rich-text
+  - name: site_settings
+    label: Site wording
+    type: file
+    path: _data/site.yml
+    format: yaml
+    fields:
+      - name: tagline
+        label: Homepage introduction
+        type: text
+      - name: about
+        label: About Deep Blue
+        type: text
+      - name: demo_mode
+        label: Show sample-content notice
+        type: boolean
