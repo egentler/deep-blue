@@ -1,0 +1,6 @@
+1. Unzip this package.
+2. Open the UNZIPPED FOLDER and upload ALL items inside it to the ROOT of your new GitHub repository; do not upload the ZIP itself or an extra enclosing folder.
+3. On a Mac use Command+Shift+. to reveal the hidden .pages.yml file. Without it the visual editor will not be configured.
+4. GitHub repository Settings > Pages > Source: Deploy from a branch > main > /(root) > Save.
+5. Test the GitHub Pages URL before changing your deepbluelr.com domain.
+6. For the editor, go to https://app.pagescms.org and authorize your repository.

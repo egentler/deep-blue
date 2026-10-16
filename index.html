@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<main id="latest">
+  <div class="section-top"><div><div class="eyebrow">Fresh from the journal</div><h2 class="section-title">The <em>current.</em></h2></div><p class="section-intro">A growing stream of student work, with the newest pieces always first.</p></div>
+  <div class="tools"><div class="filters" role="group" aria-label="Filter work"><button class="filter" data-filter="All" aria-pressed="true">All work</button><button class="filter" data-filter="Writing" aria-pressed="false">Writing</button><button class="filter" data-filter="Visual Art" aria-pressed="false">Visual art</button><button class="filter" data-filter="Photography" aria-pressed="false">Photography</button></div><label class="search-wrap"><span style="position:absolute;left:-9999px">Search work</span><input id="search" placeholder="Search the journal…" type="search" autocomplete="off"></label></div>
+  <div class="feed" id="feed">
+  {% for post in site.posts %}
+    <article class="post" data-category="{{ post.category | escape }}" data-search="{{ post.title | append: ' ' | append: post.summary | append: ' ' | append: post.author | downcase | escape }}">
+      <a class="post-cover" href="{{ post.url | relative_url }}" aria-label="Read or view {{ post.title | escape }}">
+      {% if post.cover and post.cover != '' %}<div class="image-frame"><img loading="lazy" src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}"><span class="cover-type">{{ post.category | escape }}</span></div>
+      {% else %}<div class="writing-cover cream"><span class="large-quotes" aria-hidden="true">“</span><span class="poem-preview">{{ post.preview | default: post.summary | escape | newline_to_br }}</span><span class="cover-bottom"><span>Words &amp; stories</span><span>↗</span></span></div>{% endif %}</a>
+      <div class="post-body"><div class="post-meta">{{ post.category | escape }} <span class="dot"></span> {{ post.date | date: "%b %-d, %Y" }}{% if post.sample %} <span class="dot"></span><span class="preview">Example</span>{% endif %}</div>
+        <h3 class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3><p class="post-excerpt">{{ post.summary | escape }}</p><div class="post-footer"><span class="byline">{{ post.author | default: 'Student contributor' | escape }}</span><a class="read-link" href="{{ post.url | relative_url }}">{% if post.category == 'Writing' %}Read piece{% else %}View piece{% endif %} <span>↗</span></a></div></div>
+    </article>
+  {% endfor %}
+  </div>
+  <p id="no-results" class="no-results">No pieces match that search.</p>
+  {% if site.posts.size == 0 %}<p class="no-results" style="display:block">There are no published pieces yet. Check back soon.</p>{% endif %}
+  <div class="more-row"><button class="more" id="more" type="button" hidden>Explore more work ↓</button></div>
+</main>
+<section class="about" id="about"><div><div class="eyebrow">Beneath the surface</div><h2>There's more<br><em>to discover.</em></h2></div><div><p>{{ site.data.site.about | escape }}</p><p>New work appears at the top of the journal. The archive grows as students keep creating.</p></div></section>
+<script defer src="{{ '/assets/js/archive.js' | relative_url }}"></script>

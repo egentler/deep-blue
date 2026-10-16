@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<article class="article-shell">
+  <div class="article-eyebrow">{{ page.category | escape }} · {{ page.date | date: "%B %-d, %Y" }}{% if page.sample %} · Example entry{% endif %}</div>
+  <h1 class="article-title">{{ page.title | escape }}</h1>
+  {% if page.summary %}<p class="article-summary">{{ page.summary | escape }}</p>{% endif %}
+  <div class="article-info"><span>{{ page.author | default: 'Student contributor' | escape }}</span>{% if page.medium %}<span>{{ page.medium | escape }}</span>{% endif %}</div>
+  {% if page.cover and page.cover != '' %}<figure class="article-image"><img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}">{% if page.medium %}<figcaption>{{ page.medium | escape }}</figcaption>{% endif %}</figure>{% endif %}
+  <div class="article-content">{{ content }}</div>
+  <a class="article-back" href="{{ '/' | relative_url }}#latest">← Return to the journal</a>
+</article>
