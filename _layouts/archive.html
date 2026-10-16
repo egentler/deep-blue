@@ -16,7 +16,7 @@ layout: default
       {% for post in entries %}
       <figure class="gallery-tile">
         {% if post.cover and post.cover != '' %}
-        <button type="button" class="gallery-image-button" data-open-image data-group="full-collection" data-src="{{ post.cover | relative_url }}" data-title="{{ post.title | escape }}" data-credit="{{ post.author | default: 'Student contributor' | escape }}" aria-label="View full-size image: {{ post.title | escape }}"><span class="gallery-image-stage"><img src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy"><span class="image-expand-mark" aria-hidden="true">↗</span></span></button>
+        <button type="button" class="gallery-image-button" data-open-image data-group="full-collection" data-src="{{ post.cover | relative_url }}" data-title="{{ post.title | escape }}" data-credit="{{ post.author | default: 'Student contributor' | escape }}" aria-label="View full-size image: {{ post.title | escape }}"><span class="gallery-image-stage"><img src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy"></span></button>
         {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
         <figcaption class="gallery-caption"><strong>{{ post.title | escape }}</strong><span>{{ post.author | default: 'Student contributor' | escape }}{% if post.medium %} · {{ post.medium | escape }}{% endif %}</span></figcaption>
       </figure>

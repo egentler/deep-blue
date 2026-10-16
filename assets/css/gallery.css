@@ -67,3 +67,6 @@
   .hero-inner--single .hero-title{margin-bottom:17px}
   .hero-inner--single .hero-rule{margin:21px 0}
 }
+
+/* Redundant safeguard: older cached layouts should never show the image indicator. */
+.gallery-image-stage .image-expand-mark { display: none !important; }
