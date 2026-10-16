@@ -3,14 +3,17 @@ title: Charcoal Portaits
 date: 2026-10-16
 category: Visual Art
 author: Various Artists
-cover: /assets/uploads/charcoal1-3.jpeg
-cover_credit: TBD 1
+cover: /assets/uploads/combined-charcoal.jpeg
+cover_credit: Ranger Doe
+show_cover_in_series: false
 series_images:
-  - image: /assets/uploads/charcoal2.jpeg
-    artist: TBD 2
+  - image: /assets/uploads/charcoal1-4.jpeg
+    artist: Ranger Doe
+  - image: /assets/uploads/charcoal2-1.jpeg
+    artist: Ranger Doe
   - image: /assets/uploads/charcoal-3.jpeg
-    artist: TBD 3
+    artist: Ranger Doe
   - image: /assets/uploads/charcoal-4.jpeg
-    artist: TBD 4
+    artist: Ranger Doe
 sample: false
 ---
