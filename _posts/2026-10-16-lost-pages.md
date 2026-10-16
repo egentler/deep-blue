@@ -3,9 +3,9 @@ title: Lost Pages
 date: 2025-12-16
 category: Writing
 author: Chelsea Therrien
-preview: The child sat silently. The shadows were starting to prowl, and he was
-  afraid to draw their attention. As if his situation wasn’t grave enough, the
-  Dictators had made a decision that would make it worse. They took away...
+preview: You finally got home, albeit soaking wet and panting from running
+  through the storm, you were home. The thunder dulls to a soft, steady drum as
+  the door closes behind you with...
 sample: false
 ---
 You finally got home, albeit soaking wet and panting from running through the storm, you were home. The thunder dulls to a soft, steady drum as the door closes behind you with a soft click. You peel off your jacket and hang it on the hook. A familiar soft hum comes from the fridge and a barely audible purr from the living room. Water pools on the mat beneath your feet as you pull off your boots and set them beside the door. With just one deep breath in you feel at home again as the warm smell of pine and your wood stove fill your senses. Nostalgia washes over you as you remember coming home to a full house and chaos. 
