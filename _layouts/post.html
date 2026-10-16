@@ -1,6 +1,108 @@
 ---
 layout: default
 ---
+{% comment %}
+Deep Blue: Pages CMS stores the opening comic page in "cover" and subsequent
+pages in "series_images". The normal Writing layout previously rendered only
+"cover". This branch displays ALL comic pages, in their CMS order, on a quiet
+black reading page. Ordinary writing entries are completely unchanged.
+{% endcomment %}
+{% assign is_comic_series = false %}
+{% if page.category == 'Writing' and page.series_images and page.series_images.size > 0 %}
+  {% assign is_comic_series = true %}
+{% endif %}
+{% if is_comic_series %}
+{% assign comic_page_count = page.series_images.size %}
+{% if page.cover and page.cover != '' %}{% assign comic_page_count = comic_page_count | plus: 1 %}{% endif %}
+<style>
+/* Only applies to Writing entries containing a multi-image series. */
+body:has(.deepblue-comic-reader) { background: #070c10; color: #e8efed; }
+body:has(.deepblue-comic-reader) > .hero,
+body:has(.deepblue-comic-reader) > .footer { display: none; }
+.deepblue-comic-reader, .deepblue-comic-reader * { box-sizing: border-box; }
+.deepblue-comic-reader { min-height:100dvh; background:#070c10; color:#e8efed; font-family:'DM Sans',Arial,sans-serif; }
+.comic-reader-top { min-height:64px; padding:14px max(22px, calc((100vw - 1100px) / 2)); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:15px; border-bottom:1px solid #273b40; }
+.comic-reader-brand { color:#e8efed; text-decoration:none; font:normal 26px/.95 'Instrument Serif',Georgia,serif; letter-spacing:-.035em; }
+.comic-reader-brand i { font-style:italic; color:#a9d0cd; }
+.comic-reader-back { color:#b0cac9; text-decoration:none; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; padding:8px 0; }
+.comic-reader-back:hover, .comic-reader-back:focus-visible { color:white; text-decoration:underline; text-underline-offset:5px; }
+.comic-reader-intro { max-width:760px; margin:0 auto; padding:54px 22px 55px; text-align:center; }
+.comic-reader-label { color:#9bb9b9; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.19em; }
+.comic-reader-intro h1 { color:#f0f5f2; font:normal clamp(49px,9vw,94px)/1.02 'Instrument Serif',Georgia,serif; letter-spacing:-.035em; margin:17px 0 14px; }
+.comic-reader-byline { margin:0; color:#acc2c1; font-size:13px; line-height:1.7; }
+.comic-reader-description { color:#cfdbd9; max-width:590px; margin:23px auto 0; text-align:left; font:normal 16px/1.8 Georgia,serif; }
+.comic-reader-description p { margin:0 0 1em; }
+.comic-reader-description a {color:#c9ece6; text-decoration:underline;}
+.comic-reader-gallery { width:min(100%,1000px); margin:auto; padding:0 20px 60px; }
+.comic-reader-page { margin:0 0 60px; }
+.comic-reader-page img { display:block; width:100%; height:auto; max-width:100%; object-fit:contain; margin:0 auto; background:#141d20; }
+.comic-reader-page figcaption { display:flex; justify-content:space-between; gap:15px; align-items:flex-start; padding:14px 1px 0; color:#a9c0c0; font-size:12px; line-height:1.5; }
+.comic-reader-page-number { white-space:nowrap; text-transform:uppercase; font-size:10px; letter-spacing:.15em; color:#8da6a5; }
+.comic-reader-credit { text-align:right; overflow-wrap:anywhere; }
+.comic-reader-credit small { display:block; margin-top:4px; font-size:11px; color:#9bb1b0; }
+.comic-reader-end { text-align:center; padding:5px 20px 77px; }
+.comic-reader-end a { display:inline-block; padding:14px 19px; border:1px solid #638282; color:#e4f3ef; text-transform:uppercase; text-decoration:none; font-weight:700; font-size:11px; letter-spacing:.12em; }
+.comic-reader-end a:hover, .comic-reader-end a:focus-visible { background:#19343b; }
+@media(max-width:640px){
+  .comic-reader-top { padding:13px 15px; min-height:57px; }
+  .comic-reader-brand { font-size:25px; }
+  .comic-reader-back { font-size:10px; letter-spacing:.08em; }
+  .comic-reader-intro { padding:39px 17px 38px; }
+  .comic-reader-intro h1 { font-size:clamp(46px,12vw,70px); }
+  .comic-reader-description { font-size:15px; line-height:1.7; }
+  .comic-reader-gallery { padding:0 7px 40px; }
+  .comic-reader-page { margin-bottom:44px; }
+  .comic-reader-page figcaption { padding:13px 8px 0; }
+}
+</style>
+<main class="deepblue-comic-reader" id="comic-reader">
+  <nav class="comic-reader-top" aria-label="Comic reader navigation">
+    <a class="comic-reader-brand" href="{{ '/' | relative_url }}" aria-label="Deep Blue home">deep <i>blue.</i></a>
+    <a class="comic-reader-back" href="{{ '/writing/' | relative_url }}">← Back to writing</a>
+  </nav>
+  <header class="comic-reader-intro">
+    <div class="comic-reader-label">Graphic story <span aria-hidden="true">·</span> {{ comic_page_count }} {% if comic_page_count == 1 %}page{% else %}pages{% endif %}</div>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.author and page.author != '' %}<p class="comic-reader-byline">{{ page.author | escape }}</p>{% endif %}
+    {% assign comic_introduction = content | strip_html | strip %}
+    {% if comic_introduction != '' %}
+      <div class="comic-reader-description">{{ content }}</div>
+    {% elsif page.summary and page.summary != '' %}
+      <p class="comic-reader-description">{{ page.summary | escape }}</p>
+    {% endif %}
+  </header>
+  <div class="comic-reader-gallery" aria-label="Pages of {{ page.title | escape }}">
+    {% if page.cover and page.cover != '' %}
+    <figure class="comic-reader-page">
+      <img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}, page 1" fetchpriority="high" decoding="async">
+      <figcaption>
+        <span class="comic-reader-page-number">01 / {{ comic_page_count }}</span>
+        {% if page.cover_credit and page.cover_credit != '' or page.cover_caption and page.cover_caption != '' %}
+        <span class="comic-reader-credit">{{ page.cover_credit | default: page.author | escape }}{% if page.cover_caption and page.cover_caption != '' %}<small>{{ page.cover_caption | escape }}</small>{% endif %}</span>
+        {% endif %}
+      </figcaption>
+    </figure>
+    {% endif %}
+    {% assign comic_offset = 0 %}
+    {% if page.cover and page.cover != '' %}{% assign comic_offset = 1 %}{% endif %}
+    {% for panel in page.series_images %}
+      {% if panel.image and panel.image != '' %}
+      {% assign comic_page_number = forloop.index | plus: comic_offset %}
+      <figure class="comic-reader-page">
+        <img src="{{ panel.image | relative_url }}" alt="{{ page.title | escape }}, page {{ comic_page_number }}{% if panel.caption and panel.caption != '' %}: {{ panel.caption | escape }}{% endif %}" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="comic-reader-page-number">{% if comic_page_number < 10 %}0{% endif %}{{ comic_page_number }} / {{ comic_page_count }}</span>
+          {% if panel.artist and panel.artist != '' or panel.caption and panel.caption != '' %}
+          <span class="comic-reader-credit">{{ panel.artist | default: page.author | escape }}{% if panel.caption and panel.caption != '' %}<small>{{ panel.caption | escape }}</small>{% endif %}</span>
+          {% endif %}
+        </figcaption>
+      </figure>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="comic-reader-end"><a href="{{ '/writing/' | relative_url }}">← Return to writing</a></div>
+</main>
+{% else %}
 <article class="article-shell">
   <div class="article-eyebrow">{{ page.category | escape }} · {{ page.date | date: "%B %-d, %Y" }}{% if page.sample %} · Example entry{% endif %}</div>
   <h1 class="article-title">{{ page.title | escape }}</h1>
@@ -10,3 +112,4 @@ layout: default
   <div class="article-content">{{ content }}</div>
   <a class="article-back" href="{{ '/' | relative_url }}#latest">← Return to the journal</a>
 </article>
+{% endif %}
