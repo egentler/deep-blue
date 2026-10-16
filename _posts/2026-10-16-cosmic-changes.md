@@ -5,9 +5,7 @@ category: Writing
 author: Lee Blanco
 preview: The air in the room was thick with the smell of coffee and baked goods,
   the aroma seeming to wrap itself around every person who entered the cafe.
-  Caden stood leaning against the front counter, absentmindedly staring off at
-  an inconspicuous part of the wall. It was that odd spot between morning and
-  afternoon...
+  Caden stood leaning against the front counter, absentmindedly staring off...
 sample: false
 ---
 The air in the room was thick with the smell of coffee and baked goods, the aroma seeming to wrap itself around every person who entered the cafe. Caden stood leaning against the front counter, absentmindedly staring off at an inconspicuous part of the wall. It was that odd spot between morning and afternoon where business slowed to a trickle, and Caden was so incredibly *bored*. He sighed, blowing a copper curl out of his face as he waited for something even mildly interesting to happen.
