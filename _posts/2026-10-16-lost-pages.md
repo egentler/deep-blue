@@ -5,9 +5,7 @@ category: Writing
 author: Chelsea Therrien
 preview: The child sat silently. The shadows were starting to prowl, and he was
   afraid to draw their attention. As if his situation wasn’t grave enough, the
-  Dictators had made a decision that would make it worse. They took away his
-  best weapon against the darkness that stalked around him. The thrum of strings
-  and the steady beats were his sword and shield...
+  Dictators had made a decision that would make it worse. They took away...
 sample: false
 ---
 You finally got home, albeit soaking wet and panting from running through the storm, you were home. The thunder dulls to a soft, steady drum as the door closes behind you with a soft click. You peel off your jacket and hang it on the hook. A familiar soft hum comes from the fridge and a barely audible purr from the living room. Water pools on the mat beneath your feet as you pull off your boots and set them beside the door. With just one deep breath in you feel at home again as the warm smell of pine and your wood stove fill your senses. Nostalgia washes over you as you remember coming home to a full house and chaos. 
@@ -24,5 +22,3 @@ You awake to a soft knocking on the front door, the storm has ended and only sma
 
 You stand up to get the door and the ball of fur that was sleeping on your lap wakes with a jump. You feel the warmth of its tiny body lift off your lap as it rises from its position and hops off. The tiny beast follows you, rubbing itself against your leg and almost tripping you as you walk. 
 
-  
-  
