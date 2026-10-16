@@ -52,12 +52,38 @@ content:
         label: Medium / caption
         type: string
         description: Optional, for example Oil on canvas or Digital photograph
+      - name: cover_credit
+        label: First image artist (optional, for series)
+        type: string
+        description: If different people made the images, credit the cover image here.
+      - name: cover_caption
+        label: First image caption (optional, for series)
+        type: string
+      - name: series_images
+        label: Additional images — make this entry a series
+        type: object
+        description: Leave empty for a single image. Add one item per extra image, in display order. The main Photo or artwork above is image 1.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{caption}"
+        fields:
+          - name: image
+            label: Additional image
+            type: image
+            required: true
+          - name: artist
+            label: Artist credit for this image
+            type: string
+          - name: caption
+            label: Image caption / title
+            type: string
       - name: sample
         label: Sample entry (mark true for placeholders only)
         type: boolean
         default: false
       - name: body
-        label: Full text / artist statement
+        label: Full text / artist statement / series introduction
         type: rich-text
   - name: site_settings
     label: Site wording
