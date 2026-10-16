@@ -8,14 +8,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/gallery.css' | relative_url }}">
 </head><body>
 {% if site.data.site.demo_mode %}<div class="site-notice">Preview site · Illustrations and articles are sample content, not student submissions</div>{% endif %}
 <header class="hero{% if page.layout == 'post' %} hero--short{% endif %}" id="top">
-  <div class="sitebar"><a class="brand-mini" href="{{ '/' | relative_url }}" aria-label="Deep Blue home">deep <i>blue.</i></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#latest">Latest work</a><a href="{{ '/' | relative_url }}#about">About</a></nav></div>
+  <div class="sitebar"><a class="brand-mini" href="{{ '/' | relative_url }}" aria-label="Deep Blue home">deep <i>blue.</i></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#photography">Photography</a><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#about">About</a></nav></div>
 {% if page.layout != 'post' %}
   <div class="hero-inner"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div><div class="hero-side"><div class="eyebrow">An evolving collection</div><strong>Made by students.<br><i>Made to be seen.</i></strong><div class="small-divider"></div><span>Writing, photography, and visual art — one piece at a time. There's always something new to discover.</span></div></div>
 {% else %}<div class="hero-inner"><div class="eyebrow">The Deep Blue collection</div><div class="hero-title">deep <em>blue.</em></div></div>{% endif %}
 </header>
 {{ content }}
 <footer class="footer"><div class="footer-inner"><a href="{{ '/' | relative_url }}" class="brand-mini">deep <i>blue.</i></a><small>A showcase for student writing, photography &amp; visual art.</small><span class="foot-note">Stay curious. Go deeper.</span></div></footer>
+{% include image-viewer.html %}
+<script defer src="{{ '/assets/js/gallery.js' | relative_url }}"></script>
 </body></html>

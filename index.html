@@ -1,23 +1,68 @@
 ---
 layout: default
 ---
-<main id="latest">
-  <div class="section-top"><div><div class="eyebrow">Fresh from the journal</div><h2 class="section-title">The <em>current.</em></h2></div><p class="section-intro">A growing stream of student work, with the newest pieces always first.</p></div>
-  <div class="tools"><div class="filters" role="group" aria-label="Filter work"><button class="filter" data-filter="All" aria-pressed="true">All work</button><button class="filter" data-filter="Writing" aria-pressed="false">Writing</button><button class="filter" data-filter="Visual Art" aria-pressed="false">Visual art</button><button class="filter" data-filter="Photography" aria-pressed="false">Photography</button></div><label class="search-wrap"><span style="position:absolute;left:-9999px">Search work</span><input id="search" placeholder="Search the journal…" type="search" autocomplete="off"></label></div>
-  <div class="feed" id="feed">
-  {% for post in site.posts %}
-    <article class="post" data-category="{{ post.category | escape }}" data-search="{{ post.title | append: ' ' | append: post.summary | append: ' ' | append: post.author | downcase | escape }}">
-      <a class="post-cover" href="{{ post.url | relative_url }}" aria-label="Read or view {{ post.title | escape }}">
-      {% if post.cover and post.cover != '' %}<div class="image-frame"><img loading="lazy" src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}"><span class="cover-type">{{ post.category | escape }}</span></div>
-      {% else %}<div class="writing-cover cream"><span class="large-quotes" aria-hidden="true">“</span><span class="poem-preview">{{ post.preview | default: post.summary | escape | newline_to_br }}</span><span class="cover-bottom"><span>Words &amp; stories</span><span>↗</span></span></div>{% endif %}</a>
-      <div class="post-body"><div class="post-meta">{{ post.category | escape }} <span class="dot"></span> {{ post.date | date: "%b %-d, %Y" }}{% if post.sample %} <span class="dot"></span><span class="preview">Example</span>{% endif %}</div>
-        <h3 class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3><p class="post-excerpt">{{ post.summary | escape }}</p><div class="post-footer"><span class="byline">{{ post.author | default: 'Student contributor' | escape }}</span><a class="read-link" href="{{ post.url | relative_url }}">{% if post.category == 'Writing' %}Read piece{% else %}View piece{% endif %} <span>↗</span></a></div></div>
-    </article>
-  {% endfor %}
+<main class="gallery-home" id="latest">
+  <div class="section-top gallery-introduction">
+    <div><div class="eyebrow">Fresh from the journal</div><h2 class="section-title">The <em>current.</em></h2></div>
+    <p class="section-intro">Images and words from student artists, photographers and writers. Newest work first.</p>
   </div>
-  <p id="no-results" class="no-results">No pieces match that search.</p>
-  {% if site.posts.size == 0 %}<p class="no-results" style="display:block">There are no published pieces yet. Check back soon.</p>{% endif %}
-  <div class="more-row"><button class="more" id="more" type="button" hidden>Explore more work ↓</button></div>
+
+  {% assign photo_entries = site.posts | where: 'category', 'Photography' %}
+  <section class="curated-section" id="photography" aria-labelledby="photography-heading">
+    <div class="gallery-section-heading"><div><div class="eyebrow">01 / Through the lens</div><h2 id="photography-heading">Photography<span class="accent-dot">.</span></h2></div><p>Small moments. Different perspectives. A world worth noticing.</p></div>
+    {% if photo_entries.size > 0 %}
+    <div class="featured-gallery">
+      {% for post in photo_entries limit:3 %}
+      <figure class="gallery-tile{% if forloop.first %} gallery-tile--lead{% endif %}">
+        {% if post.cover and post.cover != '' %}
+        <button type="button" class="gallery-image-button" data-open-image data-group="photography" data-src="{{ post.cover | relative_url }}" data-title="{{ post.title | escape }}" data-credit="{{ post.author | default: 'Student photographer' | escape }}" aria-label="View full-size image: {{ post.title | escape }}">
+          <span class="gallery-image-stage"><img src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy"><span class="image-expand-mark" aria-hidden="true">↗</span></span>
+        </button>
+        {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
+        <figcaption class="gallery-caption"><strong>{{ post.title | escape }}</strong><span>{{ post.author | default: 'Student photographer' | escape }}</span></figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    <a class="all-category-link" href="{{ '/photography/' | relative_url }}">View all photography <span aria-hidden="true">→</span></a>
+    {% else %}<p class="empty-gallery">Photographs will appear here as soon as they are published.</p>{% endif %}
+  </section>
+
+  {% assign art_entries = site.posts | where: 'category', 'Visual Art' %}
+  <section class="curated-section" id="visual-art" aria-labelledby="art-heading">
+    <div class="gallery-section-heading"><div><div class="eyebrow">02 / Made by hand &amp; imagination</div><h2 id="art-heading">Visual art<span class="accent-dot">.</span></h2></div><p>Drawings, paintings, and unexpected ways of seeing.</p></div>
+    {% if art_entries.size > 0 %}
+    <div class="featured-gallery">
+      {% for post in art_entries limit:3 %}
+      <figure class="gallery-tile{% if forloop.first %} gallery-tile--lead{% endif %}">
+        {% if post.cover and post.cover != '' %}
+        <button type="button" class="gallery-image-button" data-open-image data-group="art" data-src="{{ post.cover | relative_url }}" data-title="{{ post.title | escape }}" data-credit="{{ post.author | default: 'Student artist' | escape }}" aria-label="View full-size image: {{ post.title | escape }}">
+          <span class="gallery-image-stage"><img src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy"><span class="image-expand-mark" aria-hidden="true">↗</span></span>
+        </button>
+        {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
+        <figcaption class="gallery-caption"><strong>{{ post.title | escape }}</strong><span>{{ post.author | default: 'Student artist' | escape }}</span></figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    <a class="all-category-link" href="{{ '/visual-art/' | relative_url }}">View all visual art <span aria-hidden="true">→</span></a>
+    {% else %}<p class="empty-gallery">New artwork will appear here as soon as it is published.</p>{% endif %}
+  </section>
+
+  {% assign writing_entries = site.posts | where: 'category', 'Writing' %}
+  <section class="curated-section writing-section" id="writing" aria-labelledby="writing-heading">
+    <div class="gallery-section-heading"><div><div class="eyebrow">03 / Lines &amp; language</div><h2 id="writing-heading">Writing<span class="accent-dot">.</span></h2></div><p>Poems, stories, essays and all the words in between.</p></div>
+    {% if writing_entries.size > 0 %}
+    <div class="writing-grid">
+      {% for post in writing_entries limit:3 %}
+      <article class="writing-card">
+        <div class="writing-card-meta">{{ post.date | date: '%b %-d, %Y' }} {% if post.sample %}· Example{% endif %}</div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+        <p class="writing-snippet">{{ post.preview | default: post.summary | escape | newline_to_br }}</p>
+        <div class="writing-card-bottom"><span>{{ post.author | default: 'Student writer' | escape }}</span><a href="{{ post.url | relative_url }}">Read the piece →</a></div>
+      </article>
+      {% endfor %}
+    </div>
+    <a class="all-category-link" href="{{ '/writing/' | relative_url }}">View all writing <span aria-hidden="true">→</span></a>
+    {% else %}<p class="empty-gallery">New writing will appear here as soon as it is published.</p>{% endif %}
+  </section>
 </main>
-<section class="about" id="about"><div><div class="eyebrow">Beneath the surface</div><h2>There's more<br><em>to discover.</em></h2></div><div><p>{{ site.data.site.about | escape }}</p><p>New work appears at the top of the journal. The archive grows as students keep creating.</p></div></section>
-<script defer src="{{ '/assets/js/archive.js' | relative_url }}"></script>
+<section class="about" id="about"><div><div class="eyebrow">Beneath the surface</div><h2>There's more<br><em>to discover.</em></h2></div><div><p>{{ site.data.site.about | escape }}</p><p>Each new piece appears first in its section. Older pieces remain in the galleries and writing archive.</p></div></section>
