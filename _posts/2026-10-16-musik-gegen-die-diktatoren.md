@@ -5,9 +5,7 @@ category: Writing
 author: Amelia Forsay
 preview: The child sat silently. The shadows were starting to prowl, and he was
   afraid to draw their attention. As if his situation wasn’t grave enough, the
-  Dictators had made a decision that would make it worse. They took away his
-  best weapon against the darkness that stalked around him. The thrum of strings
-  and the steady beats were his sword and shield...
+  Dictators had made a decision that would make it worse. They took away...
 show_cover_in_series: true
 sample: false
 ---
