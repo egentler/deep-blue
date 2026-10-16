@@ -119,3 +119,9 @@
   .series-image-entry img{max-height:calc(100dvh - 155px)}
   .series-image-entry figcaption{padding:0 3px;font-size:12px}
 }
+
+/* Individual art and photography images sit directly on the page.
+   Preserve the blue-grey paper/stack backing for series covers. */
+.gallery-tile:not(.gallery-tile--series) .gallery-image-stage {
+  background: transparent;
+}
