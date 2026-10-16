@@ -58,3 +58,12 @@
 @media(max-width:860px){.gallery-section-heading{display:block}.gallery-section-heading p{text-align:left;max-width:440px;margin-top:11px}.writing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.sitebar{align-items:center}.sitebar .nav{gap:11px;flex-wrap:wrap;justify-content:flex-end}.sitebar .nav a{font-size:10px;text-transform:none;letter-spacing:0;border:0;padding:0;opacity:.9}.hero-inner{padding-bottom:47px}.curated-section{padding:40px 0 48px}.gallery-section-heading{margin-bottom:19px}.gallery-section-heading h2{font-size:clamp(48px,13vw,75px)}.featured-gallery{gap:16px 11px}.gallery-tile--lead .gallery-image-stage{aspect-ratio:4/3}.gallery-image-stage{aspect-ratio:5/4}.gallery-caption{padding-top:8px}.gallery-caption strong{font-size:clamp(17px,4.6vw,24px)}.gallery-tile--lead .gallery-caption strong{font-size:30px}.gallery-caption span{font-size:10px}.image-expand-mark{width:27px;height:27px;font-size:16px;right:7px;bottom:7px}.all-category-link{margin-top:20px}.writing-grid,.writing-grid--archive{grid-template-columns:1fr}.writing-card{min-height:230px}.gallery-archive{padding:0 20px 75px}.archive-intro{padding-top:33px}.archive-return{margin-bottom:34px}.archive-intro h1{font-size:clamp(63px,14vw,95px)}.all-images-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:21px 11px}.all-images-grid .gallery-image-stage{aspect-ratio:4/5}.viewer-image-wrap{padding:12px 3px 3px}.viewer-close{right:10px;top:10px}.viewer-controls{min-height:61px}}
 @media(prefers-reduced-motion:reduce){.gallery-image-stage img{transition:none}}
+
+/* A cleaner, shorter introduction: student work appears sooner. */
+.hero-inner--single{grid-template-columns:minmax(0,1fr);gap:0;padding-bottom:56px}
+.hero-inner--single .hero-copy{max-width:470px}
+@media(max-width:640px){
+  .hero-inner--single{padding-top:38px;padding-bottom:36px}
+  .hero-inner--single .hero-title{margin-bottom:17px}
+  .hero-inner--single .hero-rule{margin:21px 0}
+}

@@ -14,7 +14,7 @@
 <header class="hero{% if page.layout == 'post' %} hero--short{% endif %}" id="top">
   <div class="sitebar"><a class="brand-mini" href="{{ '/' | relative_url }}" aria-label="Deep Blue home">deep <i>blue.</i></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#photography">Photography</a><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#about">About</a></nav></div>
 {% if page.layout != 'post' %}
-  <div class="hero-inner"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div><div class="hero-side"><div class="eyebrow">An evolving collection</div><strong>Made by students.<br><i>Made to be seen.</i></strong><div class="small-divider"></div><span>Writing, photography, and visual art — one piece at a time. There's always something new to discover.</span></div></div>
+  <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div></div>
 {% else %}<div class="hero-inner"><div class="eyebrow">The Deep Blue collection</div><div class="hero-title">deep <em>blue.</em></div></div>{% endif %}
 </header>
 {{ content }}
