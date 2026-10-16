@@ -1,6 +1,6 @@
 ---
 title: Neon Portraits
-date: 2026-10-16
+date: 2026-10-15
 category: Visual Art
 author: Brayden Bradley
 cover: /assets/uploads/neon2.jpeg
