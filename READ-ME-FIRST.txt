@@ -1,0 +1,31 @@
+DEEP BLUE — LAYOUT + SERIES UPDATE
+
+This update does four things:
+1. Removes descriptive subheadings beneath all three homepage category headings.
+2. Removes "The current" introduction from the homepage.
+3. Changes homepage section order to 01 Art, 02 Writing, 03 Photography (also changes navigation order).
+4. Adds multi-image series support. A subtle offset-paper stack identifies series entries on both the homepage and category archives. Tapping one opens every image, vertically arranged on one black page, with optional introduction, captions and artist credits.
+
+INSTALL (Mac + GitHub)
+1. Unzip this ZIP. Show hidden files in Finder with Command + Shift + Period, so .pages.yml is visible.
+2. Go to https://github.com/egentler/deep-blue > Add file > Upload files.
+3. Drag EVERYTHING INSIDE the unzipped folder (including hidden .pages.yml) into the GitHub upload area. Keep folder structure.
+4. Commit changes to main and wait for GitHub Pages to rebuild.
+5. Refresh Pages CMS; the new "Additional images — make this entry a series" field will appear when editing Student work.
+
+PUBLISH A SERIES IN PAGES CMS
+- Add a Student work entry and select Visual Art or Photography.
+- Upload the first image in "Photo or artwork" (this becomes the thumbnail).
+- In "Additional images — make this entry a series", add the rest of the images in the intended order; each can have its own artist credit and caption.
+- Optionally set "First image artist" and "First image caption".
+- Put introductory text in the existing "Full text / artist statement / series introduction" rich-text field.
+- Save. Pages CMS publishes the update just as it does for single images.
+- If no extra images are added, the original single-image fullscreen viewer is used.
+
+IMPORTANT
+- This package does NOT overwrite any posts, site wording, or uploaded images.
+- It DOES replace the .pages.yml editor configuration, index.html, gallery templates, default layout, gallery stylesheet and gallery JavaScript.
+- Series = one published entry, so three newest entries per category still show on the homepage. Older pieces move to View all.
+- Published image files remain publicly accessible. Do not use filenames that identify students unless approved.
+- The last-stable version is still in GitHub history. You can use GitHub's revert if an unexpected issue appears.
+- Because this is a larger feature, test one series after uploading. The website's live build has not been tested from this environment.

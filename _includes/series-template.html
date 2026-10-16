@@ -1,0 +1,24 @@
+{% assign piece = include.post %}
+<template id="series-{{ piece.id | slugify }}">
+  <div class="series-content">
+    <div class="series-introduction">
+      <div class="series-eyebrow">A Deep Blue series · {{ piece.series_images.size | plus: 1 }} images</div>
+      <h2>{{ piece.title | escape }}</h2>
+      {% assign series_body = piece.content | strip_html | strip %}
+      {% if series_body != '' %}<div class="series-description">{{ piece.content }}</div>
+      {% elsif piece.summary and piece.summary != '' %}<p class="series-description">{{ piece.summary | escape }}</p>{% endif %}
+    </div>
+    <figure class="series-image-entry">
+      <img src="{{ piece.cover | relative_url }}" alt="{{ piece.title | escape }} — image 1" loading="eager">
+      <figcaption><span class="series-image-counter">01 / {{ piece.series_images.size | plus: 1 }}</span><div class="series-image-credits">{% if piece.cover_credit and piece.cover_credit != '' %}{{ piece.cover_credit | escape }}{% else %}{{ piece.author | default: 'Student contributor' | escape }}{% endif %}{% if piece.cover_caption and piece.cover_caption != '' %}<small>{{ piece.cover_caption | escape }}</small>{% elsif piece.medium %}<small>{{ piece.medium | escape }}</small>{% endif %}</div></figcaption>
+    </figure>
+    {% for item in piece.series_images %}
+    {% if item.image and item.image != '' %}
+    <figure class="series-image-entry">
+      <img src="{{ item.image | relative_url }}" alt="{{ item.caption | default: piece.title | escape }} — image {{ forloop.index | plus: 1 }}" loading="lazy">
+      <figcaption><span class="series-image-counter">{% assign next_index = forloop.index | plus: 1 %}{% if next_index < 10 %}0{% endif %}{{ next_index }} / {{ piece.series_images.size | plus: 1 }}</span><div class="series-image-credits">{{ item.artist | default: piece.author | default: 'Student contributor' | escape }}{% if item.caption and item.caption != '' %}<small>{{ item.caption | escape }}</small>{% endif %}</div></figcaption>
+    </figure>
+    {% endif %}
+    {% endfor %}
+  </div>
+</template>

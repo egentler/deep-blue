@@ -35,3 +35,32 @@
   });
   modal.addEventListener('close', () => { image.removeAttribute('src'); });
 })();
+
+
+// A series is a self-contained, scrollable dark gallery. All images and artist
+// credits stay together, without leaving the page or navigating to post URLs.
+(() => {
+  const modal = document.querySelector('#deepblue-series-viewer');
+  if (!modal || typeof modal.showModal !== 'function') return;
+  const container = modal.querySelector('[data-series-content]');
+  let lastTrigger = null;
+
+  document.querySelectorAll('[data-open-series]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const source = document.getElementById(trigger.dataset.seriesId);
+      if (!source || source.tagName !== 'TEMPLATE') return;
+      lastTrigger = trigger;
+      container.replaceChildren(source.content.cloneNode(true));
+      modal.showModal();
+      modal.scrollTop = 0;
+      const scroll = modal.querySelector('.series-viewer-scroll');
+      if (scroll) scroll.scrollTop = 0;
+    });
+  });
+  modal.querySelector('[data-series-close]').addEventListener('click', () => modal.close());
+  modal.addEventListener('click', event => { if (event.target === modal) modal.close(); });
+  modal.addEventListener('close', () => {
+    container.replaceChildren();
+    if (lastTrigger) lastTrigger.focus({preventScroll:true});
+  });
+})();

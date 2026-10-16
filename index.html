@@ -2,45 +2,13 @@
 layout: default
 ---
 <main class="gallery-home" id="latest">
-  <div class="section-top gallery-introduction">
-    <div><div class="eyebrow">Fresh from the journal</div><h2 class="section-title">The <em>current.</em></h2></div>
-    <p class="section-intro">Images and words from student artists, photographers and writers. Newest work first.</p>
-  </div>
-
-  {% assign photo_entries = site.posts | where: 'category', 'Photography' %}
-  <section class="curated-section" id="photography" aria-labelledby="photography-heading">
-    <div class="gallery-section-heading"><div><div class="eyebrow">01 / Through the lens</div><h2 id="photography-heading">Photography<span class="accent-dot">.</span></h2></div><p>Small moments. Different perspectives. A world worth noticing.</p></div>
-    {% if photo_entries.size > 0 %}
-    <div class="featured-gallery">
-      {% for post in photo_entries limit:3 %}
-      <figure class="gallery-tile{% if forloop.first %} gallery-tile--lead{% endif %}">
-        {% if post.cover and post.cover != '' %}
-        <button type="button" class="gallery-image-button" data-open-image data-group="photography" data-src="{{ post.cover | relative_url }}" data-title="{{ post.title | escape }}" data-credit="{{ post.author | default: 'Student photographer' | escape }}" aria-label="View full-size image: {{ post.title | escape }}">
-          <span class="gallery-image-stage"><img src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy"></span>
-        </button>
-        {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
-        <figcaption class="gallery-caption"><strong>{{ post.title | escape }}</strong><span>{{ post.author | default: 'Student photographer' | escape }}</span></figcaption>
-      </figure>
-      {% endfor %}
-    </div>
-    <a class="all-category-link" href="{{ '/photography/' | relative_url }}">View all photography <span aria-hidden="true">→</span></a>
-    {% else %}<p class="empty-gallery">Photographs will appear here as soon as they are published.</p>{% endif %}
-  </section>
-
   {% assign art_entries = site.posts | where: 'category', 'Visual Art' %}
   <section class="curated-section" id="visual-art" aria-labelledby="art-heading">
-    <div class="gallery-section-heading"><div><div class="eyebrow">02 / Made by hand &amp; imagination</div><h2 id="art-heading">Visual art<span class="accent-dot">.</span></h2></div><p>Drawings, paintings, and unexpected ways of seeing.</p></div>
+    <div class="gallery-section-heading"><div><div class="eyebrow">01 / Made by hand &amp; imagination</div><h2 id="art-heading">Visual art<span class="accent-dot">.</span></h2></div></div>
     {% if art_entries.size > 0 %}
     <div class="featured-gallery">
       {% for post in art_entries limit:3 %}
-      <figure class="gallery-tile{% if forloop.first %} gallery-tile--lead{% endif %}">
-        {% if post.cover and post.cover != '' %}
-        <button type="button" class="gallery-image-button" data-open-image data-group="art" data-src="{{ post.cover | relative_url }}" data-title="{{ post.title | escape }}" data-credit="{{ post.author | default: 'Student artist' | escape }}" aria-label="View full-size image: {{ post.title | escape }}">
-          <span class="gallery-image-stage"><img src="{{ post.cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy"></span>
-        </button>
-        {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
-        <figcaption class="gallery-caption"><strong>{{ post.title | escape }}</strong><span>{{ post.author | default: 'Student artist' | escape }}</span></figcaption>
-      </figure>
+      {% include gallery-tile.html post=post group='art' lead=forloop.first %}
       {% endfor %}
     </div>
     <a class="all-category-link" href="{{ '/visual-art/' | relative_url }}">View all visual art <span aria-hidden="true">→</span></a>
@@ -49,7 +17,7 @@ layout: default
 
   {% assign writing_entries = site.posts | where: 'category', 'Writing' %}
   <section class="curated-section writing-section" id="writing" aria-labelledby="writing-heading">
-    <div class="gallery-section-heading"><div><div class="eyebrow">03 / Lines &amp; language</div><h2 id="writing-heading">Writing<span class="accent-dot">.</span></h2></div><p>Poems, stories, essays and all the words in between.</p></div>
+    <div class="gallery-section-heading"><div><div class="eyebrow">02 / Lines &amp; language</div><h2 id="writing-heading">Writing<span class="accent-dot">.</span></h2></div></div>
     {% if writing_entries.size > 0 %}
     <div class="writing-grid">
       {% for post in writing_entries limit:3 %}
@@ -63,6 +31,19 @@ layout: default
     </div>
     <a class="all-category-link" href="{{ '/writing/' | relative_url }}">View all writing <span aria-hidden="true">→</span></a>
     {% else %}<p class="empty-gallery">New writing will appear here as soon as it is published.</p>{% endif %}
+  </section>
+
+  {% assign photo_entries = site.posts | where: 'category', 'Photography' %}
+  <section class="curated-section" id="photography" aria-labelledby="photography-heading">
+    <div class="gallery-section-heading"><div><div class="eyebrow">03 / Through the lens</div><h2 id="photography-heading">Photography<span class="accent-dot">.</span></h2></div></div>
+    {% if photo_entries.size > 0 %}
+    <div class="featured-gallery">
+      {% for post in photo_entries limit:3 %}
+      {% include gallery-tile.html post=post group='photography' lead=forloop.first %}
+      {% endfor %}
+    </div>
+    <a class="all-category-link" href="{{ '/photography/' | relative_url }}">View all photography <span aria-hidden="true">→</span></a>
+    {% else %}<p class="empty-gallery">Photographs will appear here as soon as they are published.</p>{% endif %}
   </section>
 </main>
 <section class="about" id="about"><div><div class="eyebrow">Beneath the surface</div><h2>There's more<br><em>to discover.</em></h2></div><div><p>{{ site.data.site.about | escape }}</p><p>Each new piece appears first in its section. Older pieces remain in the galleries and writing archive.</p></div></section>

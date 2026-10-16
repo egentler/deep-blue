@@ -70,3 +70,52 @@
 
 /* Redundant safeguard: older cached layouts should never show the image indicator. */
 .gallery-image-stage .image-expand-mark { display: none !important; }
+
+
+/* October 2026: editorial simplification & visual series */
+.gallery-home .curated-section:first-child{padding-top:27px}
+.gallery-section-heading{margin-bottom:22px}
+/* Printed category titles remain; accompanying description lines are removed. */
+.gallery-section-heading p{display:none}
+
+/* Three understated offset sheets make a series readable at a glance. */
+.gallery-image-button--series{width:calc(100% - 9px);margin:0 9px 9px 0;position:relative;isolation:isolate}
+.gallery-image-button--series::before,.gallery-image-button--series::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border:1px solid #b0c3bf;background:#d8e1dc}
+.gallery-image-button--series::before{transform:translate(9px,9px);background:#baccc7}
+.gallery-image-button--series::after{transform:translate(5px,5px);background:#ecf1ec}
+.gallery-image-button--series .gallery-image-stage{z-index:1;box-shadow:0 2px 4px rgba(18,53,54,.12)}
+.series-label{font-size:10px!important;color:#386968!important;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-top:5px}
+
+/* One calm black page with every image and its individual credit. */
+.series-viewer{position:fixed;inset:0;margin:0;padding:0;border:0;width:100vw;max-width:none;height:100dvh;max-height:none;overflow:hidden;color:#f5f7f5;background:#060b10}
+.series-viewer[open]{display:flex;flex-direction:column}
+.series-viewer::backdrop{background:rgba(0,0,0,.94)}
+.series-viewer-header{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;min-height:58px;padding:0 max(18px,calc((100vw - 1100px)/2));background:#101920;border-bottom:1px solid #26353b;z-index:2;color:#bdcdcf;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.series-viewer-header i{font-family:var(--serif);font-size:20px;letter-spacing:-.05em;text-transform:none;color:#e2e9e5}
+.series-viewer-divider{margin:0 10px;color:#5f7a7d}
+.series-viewer-close{width:46px;height:46px;flex:0 0 46px;background:transparent;border:0;color:#f3f5f1;font-size:32px;cursor:pointer;line-height:1}
+.series-viewer-close:focus-visible{outline:2px solid #cbe4dc;outline-offset:-6px}
+.series-viewer-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.series-content{width:min(100%,990px);box-sizing:border-box;padding:0 24px 85px;margin:0 auto}
+.series-introduction{max-width:680px;margin:54px auto 55px;text-align:center}
+.series-eyebrow{font-size:10px;text-transform:uppercase;color:#9eb7b8;letter-spacing:.19em;font-weight:700}
+.series-introduction h2{font:normal clamp(49px,9vw,95px)/1.04 var(--serif);letter-spacing:-.04em;margin:14px 0 20px;color:#f1f3f0}
+.series-description{max-width:590px;margin:14px auto 0;color:#bbcbca;font:normal 16px/1.8 Georgia,serif;text-align:left}
+.series-description p{margin:0 0 1em}
+.series-description a{color:#e1f3ed;text-decoration:underline}
+.series-image-entry{margin:0 auto 78px;text-align:center}
+.series-image-entry img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 150px);object-fit:contain;margin:0 auto;background:#0b1116}
+.series-image-entry figcaption{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;text-align:left;max-width:830px;margin:17px auto 0;padding:0 1px;color:#dee9e5;font-size:13px}
+.series-image-counter{flex:0 0 auto;color:#91abaa;letter-spacing:.16em;font-size:11px}
+.series-image-credits{flex:1;text-align:right}
+.series-image-credits small{display:block;margin-top:5px;color:#9bb2b2;font-size:11px;line-height:1.6}
+@media(max-width:640px){
+  .gallery-home .curated-section:first-child{padding-top:14px}
+  .series-content{padding:0 13px 50px}
+  .series-introduction{margin:35px auto 38px}
+  .series-introduction h2{font-size:clamp(45px,12vw,70px)}
+  .series-description{font-size:14px;line-height:1.75}
+  .series-image-entry{margin-bottom:56px}
+  .series-image-entry img{max-height:calc(100dvh - 155px)}
+  .series-image-entry figcaption{padding:0 3px;font-size:12px}
+}
