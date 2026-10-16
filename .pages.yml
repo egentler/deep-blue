@@ -59,10 +59,15 @@ content:
       - name: cover_caption
         label: First image caption (optional, for series)
         type: string
+      - name: show_cover_in_series
+        label: Show cover image inside the full series?
+        type: boolean
+        default: true
+        description: Turn this off when the cover is a composite or specially designed thumbnail. It will still appear on the homepage, but only the Additional images will appear in the opened series. Leave on for existing series.
       - name: series_images
         label: Additional images — make this entry a series
         type: object
-        description: Leave empty for a single image. Add one item per extra image, in display order. The main Photo or artwork above is image 1.
+        description: Leave empty for a single image. Add images in display order. If you turn off Show cover image inside the full series, these are the only images visitors will see after opening the series.
         list:
           collapsible:
             collapsed: true
