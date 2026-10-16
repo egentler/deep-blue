@@ -1,6 +1,6 @@
 ---
 title: The Edge of Somewhere
-date: 2026-09-28
+date: 2024-09-28
 category: Photography
 author: Student artist
 summary: An experiment in gesture, layered shapes, and the space between.
