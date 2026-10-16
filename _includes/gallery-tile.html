@@ -1,10 +1,12 @@
 {% assign piece = include.post %}
 {% assign is_series = false %}
 {% if piece.series_images and piece.series_images.size > 0 %}{% assign is_series = true %}{% endif %}
+{% assign series_display_count = piece.series_images.size | default: 0 %}
+{% if piece.show_cover_in_series != false and piece.cover and piece.cover != '' %}{% assign series_display_count = series_display_count | plus: 1 %}{% endif %}
 <figure class="gallery-tile{% if include.lead %} gallery-tile--lead{% endif %}{% if is_series %} gallery-tile--series{% endif %}">
   {% if piece.cover and piece.cover != '' %}
     {% if is_series %}
-    <button type="button" class="gallery-image-button gallery-image-button--series" data-open-series data-series-id="series-{{ piece.id | slugify }}" aria-label="Open series {{ piece.title | escape }}; {{ piece.series_images.size | plus: 1 }} images">
+    <button type="button" class="gallery-image-button gallery-image-button--series" data-open-series data-series-id="series-{{ piece.id | slugify }}" aria-label="Open series {{ piece.title | escape }}; {{ series_display_count }} images">
       <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url }}" alt="{{ piece.title | escape }} — series cover" loading="lazy"></span>
     </button>
     {% else %}
@@ -14,7 +16,7 @@
     {% endif %}
   {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
   <figcaption class="gallery-caption"><strong>{{ piece.title | escape }}</strong><span>{{ piece.author | default: 'Student contributor' | escape }}{% if piece.medium %} · {{ piece.medium | escape }}{% endif %}</span>
-  {% if is_series %}<span class="series-label">Series <span aria-hidden="true">·</span> {{ piece.series_images.size | plus: 1 }} images</span>{% endif %}</figcaption>
+  {% if is_series %}<span class="series-label">Series <span aria-hidden="true">·</span> {{ series_display_count }} images</span>{% endif %}</figcaption>
 </figure>
 {% if is_series and piece.cover and piece.cover != '' %}
 {% include series-template.html post=piece %}

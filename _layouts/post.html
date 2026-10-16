@@ -12,8 +12,10 @@ black reading page. Ordinary writing entries are completely unchanged.
   {% assign is_comic_series = true %}
 {% endif %}
 {% if is_comic_series %}
+{% assign display_comic_cover = true %}
+{% if page.show_cover_in_series == false or page.cover == nil or page.cover == '' %}{% assign display_comic_cover = false %}{% endif %}
 {% assign comic_page_count = page.series_images.size %}
-{% if page.cover and page.cover != '' %}{% assign comic_page_count = comic_page_count | plus: 1 %}{% endif %}
+{% if display_comic_cover %}{% assign comic_page_count = comic_page_count | plus: 1 %}{% endif %}
 <style>
 /* Only applies to Writing entries containing a multi-image series. */
 body:has(.deepblue-comic-reader) { background: #070c10; color: #e8efed; }
@@ -72,7 +74,7 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
     {% endif %}
   </header>
   <div class="comic-reader-gallery" aria-label="Pages of {{ page.title | escape }}">
-    {% if page.cover and page.cover != '' %}
+    {% if display_comic_cover %}
     <figure class="comic-reader-page">
       <img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}, page 1" fetchpriority="high" decoding="async">
       <figcaption>
@@ -84,7 +86,7 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
     </figure>
     {% endif %}
     {% assign comic_offset = 0 %}
-    {% if page.cover and page.cover != '' %}{% assign comic_offset = 1 %}{% endif %}
+    {% if display_comic_cover %}{% assign comic_offset = 1 %}{% endif %}
     {% for panel in page.series_images %}
       {% if panel.image and panel.image != '' %}
       {% assign comic_page_number = forloop.index | plus: comic_offset %}
