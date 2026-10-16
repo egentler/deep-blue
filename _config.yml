@@ -1,10 +1,10 @@
 # Deep Blue | GitHub Pages + Jekyll
-# For a repository named deep-blue, this is the correct test address.
-# When we connect deepbluelr.com, change baseurl to "".
+# Production settings for the custom domain deepbluelr.com.
+# Upload when switching your custom domain, not before.
 title: Deep Blue
 description: Student writing, photography, and visual art
-url: "https://YOUR-USERNAME.github.io" # Optional metadata; update after setup.
-baseurl: "/deep-blue"     # If your repository has another name, change this.
+url: "https://deepbluelr.com"
+baseurl: ""
 permalink: /work/:title/
 markdown: kramdown
 exclude:
