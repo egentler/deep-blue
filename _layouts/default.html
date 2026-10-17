@@ -2,8 +2,13 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b2634">
-<meta name="description" content="{{ page.summary | default: site.description | escape }}">
-<title>{% if page.title %}{{ page.title | escape }} — {% endif %}Deep Blue</title>
+<meta name="description" content="{{ page.summary | default: page.description | default: site.description | escape }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{% if page.title %}{{ page.title | escape }} | Deep Blue{% else %}Deep Blue | Lake Region Student Arts &amp; Literary Journal{% endif %}">
+<meta property="og:description" content="{{ page.summary | default: page.description | default: site.description | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<title>{% if page.url == '/' %}Deep Blue | Lake Region Student Arts &amp; Literary Journal{% elsif page.title %}{{ page.title | escape }} | Deep Blue{% else %}Deep Blue | Lake Region Student Arts &amp; Literary Journal{% endif %}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">

@@ -2,11 +2,13 @@
 # Production settings for the custom domain deepbluelr.com.
 # Upload when switching your custom domain, not before.
 title: Deep Blue
-description: Student writing, photography, and visual art
+description: "Deep Blue is the student arts and literary journal of Lake Region Union High School in Orleans, Vermont, featuring student photography, visual art, and creative writing."
 url: "https://deepbluelr.com"
 baseurl: ""
 permalink: /work/:title/
 markdown: kramdown
+plugins:
+  - jekyll-sitemap
 exclude:
   - README.md
   - UPLOAD-INSTRUCTIONS.txt
