@@ -26,6 +26,9 @@
 /* Tighten only the homepage introduction paragraph (previously 1.82). */
 .hero-inner--single .hero-copy{line-height:1.35}
 
+/* Keep the closing idiom together even as screen width changes. */
+.hero-inner--single .hero-copy .hero-copy-keep-together{white-space:nowrap}
+
 /* Bring the journal label closer to the navigation divider on the homepage. */
 .hero-inner--single{padding-top:30px}
 @media(max-width:640px){
@@ -38,7 +41,7 @@
 <header class="hero{% if page.layout == 'post' %} hero--short{% endif %}" id="top">
   <div class="sitebar"><a class="brand-mini brand-mini--icon" href="{{ '/' | relative_url }}" aria-label="Deep Blue home"><img src="{{ '/assets/images/deep-blue-wave-nav.png' | relative_url }}" alt="" width="48" height="48"></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#photography">Photography</a></nav></div>
 {% if page.layout != 'post' %}
-  <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div></div>
+  <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{% assign safe_tagline = site.data.site.tagline | escape %}{{ safe_tagline | replace: 'catch and release', '<span class="hero-copy-keep-together">catch and release</span>' }}</p></div></div>
 {% else %}<div class="hero-inner"><div class="eyebrow">The Deep Blue collection</div><div class="hero-title">deep <em>blue.</em></div></div>{% endif %}
 </header>
 {{ content }}
