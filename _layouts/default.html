@@ -25,12 +25,40 @@
   .sitebar .brand-mini--icon{width:42px;height:42px;flex-basis:42px}
   .hero-inner--single{padding-top:27px}
 }
+
+/* Horizontal homepage masthead experiment — only homepage affected. */
+.hero--horizontal-home .hero-inner--single{
+  padding-top:30px;
+  padding-bottom:48px;
+}
+.hero--horizontal-home .hero-inner--single .hero-title{
+  font-size:clamp(86px,10.5vw,162px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  white-space:nowrap;
+  margin:20px 0 21px;
+}
+.hero--horizontal-home .hero-inner--single .hero-rule{
+  margin:18px 0 18px;
+}
+.hero--horizontal-home .hero-inner--single .hero-copy{
+  max-width:560px;
+}
+@media(max-width:640px){
+  .hero--horizontal-home .hero-inner--single{padding-top:24px;padding-bottom:32px}
+  .hero--horizontal-home .hero-inner--single .hero-title{
+    font-size:clamp(56px,12.2vw,82px);
+    letter-spacing:-.06em;
+    margin:15px 0 17px;
+  }
+  .hero--horizontal-home .hero-inner--single .hero-rule{margin:15px 0}
+}
 </style>
 </head><body>
-<header class="hero{% if page.layout == 'post' %} hero--short{% endif %}" id="top">
+<header class="hero{% if page.layout == 'post' %} hero--short{% endif %}{% if page.url == '/' %} hero--horizontal-home{% endif %}" id="top">
   <div class="sitebar"><a class="brand-mini brand-mini--icon" href="{{ '/' | relative_url }}" aria-label="Deep Blue home"><img src="{{ '/assets/images/deep-blue-wave-nav.png' | relative_url }}" alt="" width="48" height="48"></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#photography">Photography</a></nav></div>
 {% if page.layout != 'post' %}
-  <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div></div>
+  <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep{% unless page.url == '/' %}<br>{% endunless %}<em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div></div>
 {% else %}<div class="hero-inner"><div class="eyebrow">The Deep Blue collection</div><div class="hero-title">deep <em>blue.</em></div></div>{% endif %}
 </header>
 {{ content }}
