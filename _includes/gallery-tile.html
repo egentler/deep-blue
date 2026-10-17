@@ -1,17 +1,39 @@
 {% assign piece = include.post %}
+{% comment %}
+  A series is defined by the number of images actually displayed in the viewer,
+  not the number of images uploaded. With a hidden cover and exactly one
+  additional image, the cover acts as a custom thumbnail for a SINGLE image.
+  This preserves the existing show_cover_in_series toggle for true series.
+{% endcomment %}
+{% assign additional_count = piece.series_images.size | default: 0 %}
+{% assign series_display_count = additional_count %}
+{% if piece.show_cover_in_series != false and piece.cover and piece.cover != '' %}
+  {% assign series_display_count = series_display_count | plus: 1 %}
+{% endif %}
 {% assign is_series = false %}
-{% if piece.series_images and piece.series_images.size > 0 %}{% assign is_series = true %}{% endif %}
-{% assign series_display_count = piece.series_images.size | default: 0 %}
-{% if piece.show_cover_in_series != false and piece.cover and piece.cover != '' %}{% assign series_display_count = series_display_count | plus: 1 %}{% endif %}
+{% if series_display_count > 1 %}{% assign is_series = true %}{% endif %}
+
+{% assign full_image = piece.cover %}
+{% assign full_image_credit = piece.author | default: 'Student contributor' %}
+{% if piece.show_cover_in_series == false and additional_count == 1 %}
+  {% assign original_image = piece.series_images | first %}
+  {% if original_image.image and original_image.image != '' %}
+    {% assign full_image = original_image.image %}
+  {% endif %}
+  {% if original_image.artist and original_image.artist != '' %}
+    {% assign full_image_credit = original_image.artist %}
+  {% endif %}
+{% endif %}
+
 <figure class="gallery-tile{% if include.lead %} gallery-tile--lead{% endif %}{% if is_series %} gallery-tile--series{% endif %}">
   {% if piece.cover and piece.cover != '' %}
     {% if is_series %}
     <button type="button" class="gallery-image-button gallery-image-button--series" data-open-series data-series-id="series-{{ piece.id | slugify }}" aria-label="Open series {{ piece.title | escape }}; {{ series_display_count }} images">
-      <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url }}" alt="{{ piece.title | escape }} — series cover" loading="lazy"></span>
+      <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url | escape }}" alt="{{ piece.title | escape }} — series cover" loading="lazy"></span>
     </button>
     {% else %}
-    <button type="button" class="gallery-image-button" data-open-image data-group="{{ include.group }}" data-src="{{ piece.cover | relative_url }}" data-title="{{ piece.title | escape }}" data-credit="{{ piece.author | default: 'Student contributor' | escape }}" aria-label="View full-size image: {{ piece.title | escape }}">
-      <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url }}" alt="{{ piece.title | escape }}" loading="lazy"></span>
+    <button type="button" class="gallery-image-button" data-open-image data-group="{{ include.group }}" data-src="{{ full_image | relative_url | escape }}" data-title="{{ piece.title | escape }}" data-credit="{{ full_image_credit | escape }}" aria-label="View full-size image: {{ piece.title | escape }}">
+      <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url | escape }}" alt="{{ piece.title | escape }}" loading="lazy"></span>
     </button>
     {% endif %}
   {% else %}<div class="gallery-image-stage gallery-missing">Image coming soon</div>{% endif %}
