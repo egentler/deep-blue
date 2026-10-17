@@ -2,22 +2,140 @@
 layout: default
 ---
 {% assign entries = site.posts | where: 'category', page.category_filter %}
+<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261017-all-archives-2">
 <main class="gallery-archive">
-  <div class="archive-intro"><a href="{{ '/' | relative_url }}" class="archive-return">← Back to Deep Blue</a><div class="eyebrow">The complete collection</div><h1>{{ page.archive_title | escape }}<em>.</em></h1><p>{{ page.archive_description | escape }}</p><div class="archive-count">{{ entries.size }} {% if entries.size == 1 %}piece{% else %}pieces{% endif %} · newest first</div></div>
+  <div class="archive-intro">
+    <a href="{{ '/' | relative_url }}" class="archive-return">← Back to Deep Blue</a>
+    <div class="eyebrow">The complete collection</div>
+    <h1>{{ page.archive_title | escape }}<em>.</em></h1>
+    <p>{{ page.archive_description | escape }}</p>
+    <div class="archive-count">{{ entries.size }} {% if entries.size == 1 %}piece{% else %}pieces{% endif %} · newest first</div>
+  </div>
+
   {% if entries.size > 0 %}
     {% if page.category_filter == 'Writing' %}
-    <div class="writing-grid writing-grid--archive">
-      {% for post in entries %}
-      <article class="writing-card"><div class="writing-card-meta">{{ post.date | date: '%b %-d, %Y' }}{% if post.sample %} · Example{% endif %}</div><h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2><p class="writing-snippet">{{ post.preview | default: post.summary | escape | newline_to_br }}</p><div class="writing-card-bottom"><span>{{ post.author | default: 'Student writer' | escape }}</span><a href="{{ post.url | relative_url }}">Read the piece →</a></div></article>
-      {% endfor %}
-    </div>
+      {% comment %}
+        Writing has its own 14-post rhythm (text remains comfortably readable):
+        0-3: standard two-column; 4-6: one highlighted piece + two alongside;
+        7-10: standard; 11-13: compact three-column on large screens.
+        On phones, text stays one column wide. Each incomplete group closes cleanly.
+      {% endcomment %}
+      <div class="db-writing-editorial">
+        {% for post in entries %}
+          {% assign pos = forloop.index0 | modulo: 14 %}
+          {% if pos < 4 %}
+            {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 3 %}
+          {% elsif pos < 7 %}
+            {% assign segment = 'feature' %}{% assign seg_start = 4 %}{% assign seg_end = 6 %}
+          {% elsif pos < 11 %}
+            {% assign segment = 'standard' %}{% assign seg_start = 7 %}{% assign seg_end = 10 %}
+          {% else %}
+            {% assign segment = 'compact' %}{% assign seg_start = 11 %}{% assign seg_end = 13 %}
+          {% endif %}
+
+          {% if pos == seg_start %}
+            {% if segment == 'standard' %}
+              <div class="db-writing-standard-grid">
+            {% elsif segment == 'compact' %}
+              <div class="db-writing-compact-band"><div class="db-writing-compact-grid">
+            {% else %}
+              <section class="db-writing-feature-band" aria-label="Highlighted writing">
+                <div class="db-writing-lead">
+            {% endif %}
+          {% endif %}
+
+          <article class="writing-card{% if segment == 'feature' and pos == seg_start %} db-writing-card--lead{% endif %}">
+            <div class="writing-card-meta">{{ post.date | date: '%b %-d, %Y' }}{% if post.sample %} · Example{% endif %}</div>
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+            <p class="writing-snippet">{{ post.preview | default: post.summary | escape | newline_to_br }}</p>
+            <div class="writing-card-bottom"><span>{{ post.author | default: 'Student writer' | escape }}</span><a href="{{ post.url | relative_url }}">Read the piece →</a></div>
+          </article>
+
+          {% if segment == 'feature' and pos == seg_start %}
+            </div>
+            {% unless forloop.last %}<div class="db-writing-feature-support">{% endunless %}
+          {% endif %}
+
+          {% if pos == seg_end or forloop.last %}
+            {% if segment == 'standard' %}
+              </div>
+            {% elsif segment == 'compact' %}
+              </div></div>
+            {% else %}
+              {% if pos != seg_start %}</div>{% endif %}
+              </section>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
     {% else %}
-    <div class="all-images-grid">
-      {% for post in entries %}
-      {% include gallery-tile.html post=post group='full-collection' %}
-      {% endfor %}
-    </div>
+      {% comment %}
+        Visual Art and Photography use different orders of the same 22-image rhythm.
+        Visual Art: 6 standard, 5 featured, 6 standard, 5 compact.
+        Photography: 5 featured, 6 standard, 5 compact, 6 standard.
+        Reuse the unchanged gallery-tile include for single images, series, credits
+        and the existing browser-back-aware full-screen viewer.
+      {% endcomment %}
+      <div class="db-editorial-archive{% if page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}">
+        {% for post in entries %}
+          {% assign pos = forloop.index0 | modulo: 22 %}
+          {% if page.category_filter == 'Photography' %}
+            {% if pos < 5 %}
+              {% assign segment = 'feature' %}{% assign seg_start = 0 %}{% assign seg_end = 4 %}
+            {% elsif pos < 11 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 5 %}{% assign seg_end = 10 %}
+            {% elsif pos < 16 %}
+              {% assign segment = 'compact' %}{% assign seg_start = 11 %}{% assign seg_end = 15 %}
+            {% else %}
+              {% assign segment = 'standard' %}{% assign seg_start = 16 %}{% assign seg_end = 21 %}
+            {% endif %}
+          {% else %}
+            {% if pos < 6 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 5 %}
+            {% elsif pos < 11 %}
+              {% assign segment = 'feature' %}{% assign seg_start = 6 %}{% assign seg_end = 10 %}
+            {% elsif pos < 17 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 11 %}{% assign seg_end = 16 %}
+            {% else %}
+              {% assign segment = 'compact' %}{% assign seg_start = 17 %}{% assign seg_end = 21 %}
+            {% endif %}
+          {% endif %}
+
+          {% if pos == seg_start %}
+            {% if segment == 'standard' %}
+              <div class="db-standard-grid">
+            {% elsif segment == 'compact' %}
+              <div class="db-compact-band"><div class="db-compact-grid">
+            {% else %}
+              <section class="db-feature-band" aria-label="Featured collection arrangement">
+                <div class="db-feature-lead">
+            {% endif %}
+          {% endif %}
+
+          {% if segment == 'feature' and pos == seg_start %}
+            {% include gallery-tile.html post=post group='full-collection' lead=true %}
+            </div>
+            {% unless forloop.last %}<div class="db-feature-quartet">{% endunless %}
+          {% else %}
+            {% include gallery-tile.html post=post group='full-collection' %}
+          {% endif %}
+
+          {% if pos == seg_end or forloop.last %}
+            {% if segment == 'standard' %}
+              </div>
+            {% elsif segment == 'compact' %}
+              </div></div>
+            {% else %}
+              {% if pos != seg_start %}</div>{% endif %}
+              </section>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endif %}
-  {% else %}<p class="empty-gallery">There's nothing in this collection yet. Check back soon.</p>{% endif %}
+  {% else %}
+    <p class="empty-gallery">There's nothing in this collection yet. Check back soon.</p>
+  {% endif %}
   <a href="{{ '/' | relative_url }}" class="all-category-link">← Back to the homepage</a>
 </main>
