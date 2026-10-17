@@ -3,7 +3,7 @@ title: Charcoal Portaits
 date: 2026-10-16
 category: Visual Art
 author: Various Artists
-cover: /assets/uploads/charcoal-portrait-crop.jpeg
+cover: /assets/uploads/charcoal-portrait-crop-1.jpeg
 cover_credit: Ranger Doe
 show_cover_in_series: false
 series_images:
