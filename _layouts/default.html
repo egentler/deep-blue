@@ -13,10 +13,22 @@
 .sitebar .nav a:last-child{border:0;padding:0;border-radius:0;opacity:.76}
 .footer .footer-message{font-size:14px;line-height:1.55;letter-spacing:.01em}
 .footer .footer-message em{font-family:'Instrument Serif',Georgia,serif;font-size:1.22em;color:#d8e6e4}
+
+/* October 2026: small image mark for navigation, without repeating the hero wordmark. */
+.sitebar{padding-top:18px;padding-bottom:17px}
+.sitebar .brand-mini--icon{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;flex:0 0 48px;line-height:1}
+.sitebar .brand-mini--icon img{display:block;width:100%;height:100%;object-fit:contain}
+/* Bring the journal label closer to the navigation divider on the homepage. */
+.hero-inner--single{padding-top:30px}
+@media(max-width:640px){
+  .sitebar{padding-top:14px;padding-bottom:13px}
+  .sitebar .brand-mini--icon{width:42px;height:42px;flex-basis:42px}
+  .hero-inner--single{padding-top:27px}
+}
 </style>
 </head><body>
 <header class="hero{% if page.layout == 'post' %} hero--short{% endif %}" id="top">
-  <div class="sitebar"><a class="brand-mini" href="{{ '/' | relative_url }}" aria-label="Deep Blue home">deep <i>blue.</i></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#photography">Photography</a></nav></div>
+  <div class="sitebar"><a class="brand-mini brand-mini--icon" href="{{ '/' | relative_url }}" aria-label="Deep Blue home"><img src="{{ '/assets/images/deep-blue-wave-nav.png' | relative_url }}" alt="" width="48" height="48"></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#photography">Photography</a></nav></div>
 {% if page.layout != 'post' %}
   <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title">deep<br><em>blue.</em></h1><div class="hero-rule"></div><p class="hero-copy">{{ site.data.site.tagline | escape }}</p></div></div>
 {% else %}<div class="hero-inner"><div class="eyebrow">The Deep Blue collection</div><div class="hero-title">deep <em>blue.</em></div></div>{% endif %}
