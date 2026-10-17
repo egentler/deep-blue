@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign entries = site.posts | where: 'category', page.category_filter %}
-<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261017-density-grids-1">
+<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261017-photo-rows-1">
 <main class="gallery-archive">
   <div class="archive-intro">
     <a href="{{ '/' | relative_url }}" class="archive-return">← Back to Deep Blue</a>
@@ -71,31 +71,31 @@ layout: default
 
     {% else %}
       {% comment %}
-        Visual Art and Photography use equal-sized images within each band.
-        Only the number of columns changes; there are no special lead images.
+        Equal-weight photography, one band per desktop row: 3 / 6 / 2 / 5,
+        repeating every 16 pieces (newest first). On smaller screens,
+        grids reduce to 1-2 columns so artwork stays readable.
 
-        Visual Art (34-post cycle): 6 standard (3 across), 10 compact (5),
-        6 standard (3), 12 dense (6).
-        Photography (34-post cycle): 10 compact (5), 6 standard (3),
-        12 dense (6), 6 standard (3).
+        Visual Art stays unchanged: 6 standard (3 across), 10 compact (5),
+        6 standard (3), 12 dense (6). Writing uses its separate text layout.
 
-        All cards use the shared gallery-tile include; series flags, special
-        covers, image viewers and browser back behavior are unchanged.
+        All images use the existing gallery-tile include to preserve covers,
+        series indicators, opening behavior, and back-button handling.
       {% endcomment %}
       <div class="db-editorial-archive{% if page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}">
         {% for post in entries %}
-          {% assign pos = forloop.index0 | modulo: 34 %}
           {% if page.category_filter == 'Photography' %}
-            {% if pos < 10 %}
-              {% assign segment = 'compact' %}{% assign seg_start = 0 %}{% assign seg_end = 9 %}
-            {% elsif pos < 16 %}
-              {% assign segment = 'standard' %}{% assign seg_start = 10 %}{% assign seg_end = 15 %}
-            {% elsif pos < 28 %}
-              {% assign segment = 'dense' %}{% assign seg_start = 16 %}{% assign seg_end = 27 %}
+            {% assign pos = forloop.index0 | modulo: 16 %}
+            {% if pos < 3 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 2 %}
+            {% elsif pos < 9 %}
+              {% assign segment = 'dense' %}{% assign seg_start = 3 %}{% assign seg_end = 8 %}
+            {% elsif pos < 11 %}
+              {% assign segment = 'wide' %}{% assign seg_start = 9 %}{% assign seg_end = 10 %}
             {% else %}
-              {% assign segment = 'standard' %}{% assign seg_start = 28 %}{% assign seg_end = 33 %}
+              {% assign segment = 'compact' %}{% assign seg_start = 11 %}{% assign seg_end = 15 %}
             {% endif %}
           {% else %}
+            {% assign pos = forloop.index0 | modulo: 34 %}
             {% if pos < 6 %}
               {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 5 %}
             {% elsif pos < 16 %}
@@ -110,11 +110,13 @@ layout: default
           {% if pos == seg_start %}
             {% if segment == 'standard' %}
               <div class="db-standard-grid">
+            {% elsif segment == 'wide' %}
+              <div class="db-photo-wide-grid">
             {% elsif segment == 'compact' %}
-              <section class="db-compact-band" aria-label="Artworks in compact grid">
+              <section class="db-compact-band" aria-label="Works in compact grid">
                 <div class="db-compact-grid">
             {% else %}
-              <section class="db-dense-band" aria-label="Artworks in small grid">
+              <section class="db-dense-band" aria-label="Works in small grid">
                 <div class="db-dense-grid">
             {% endif %}
           {% endif %}
@@ -122,7 +124,7 @@ layout: default
           {% include gallery-tile.html post=post group='full-collection' %}
 
           {% if pos == seg_end or forloop.last %}
-            {% if segment == 'standard' %}
+            {% if segment == 'standard' or segment == 'wide' %}
               </div>
             {% else %}
                 </div>

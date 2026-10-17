@@ -1,5 +1,6 @@
 /* Deep Blue — Artwork and Photography density-only editorial galleries.
    All items within a section have equal-sized image stages: no 'lead' tile.
+   Photography cycles 3 / 6 / 2 / 5 in single desktop rows.
    Writing rules below are retained unchanged from the previous update. */
 .db-editorial-archive {
   display: flex;
@@ -48,10 +49,21 @@
   font-size: clamp(14px, 1.25vw, 19px);
 }
 .db-dense-grid .gallery-caption span { font-size: clamp(12px, 1.0vw, 15px); }
-/* Photography starts compact; a very slight cooler hue differentiates it. */
+/* Photography: one-row sequence 3 / 6 / 2 / 5 on desktop. */
+.db-photo-wide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 29px 18px;
+  align-items: start;
+}
+/* A very slight cooler hue differentiates Photography's small-thumbnail band. */
 .db-photo-archive .db-compact-band { background: #edf1f2; }
 .db-photo-archive .db-dense-band { border-color: #d5e0e4; }
 
+/* Keep all six photographs in one row at desktop widths, even on laptops. */
+@media (min-width: 961px) {
+  .db-photo-archive .db-dense-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
 /* Don't reduce readability or create awkwardly narrow columns on tablets. */
 @media (max-width: 1180px) {
   .db-dense-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
@@ -62,6 +74,7 @@
 }
 @media (max-width: 760px) {
   .db-standard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .db-photo-wide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .db-compact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .db-dense-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -69,6 +82,8 @@
 @media (max-width: 640px) {
   .db-editorial-archive { gap: 30px; }
   .db-standard-grid { gap: 22px 11px; }
+  /* Keep the generous two-image row genuinely large on a narrow phone. */
+  .db-photo-wide-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .db-compact-band { padding: 15px 10px; }
   .db-compact-grid, .db-dense-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
