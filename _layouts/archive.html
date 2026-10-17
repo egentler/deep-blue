@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign entries = site.posts | where: 'category', page.category_filter %}
-<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261017-all-archives-2">
+<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261017-density-grids-1">
 <main class="gallery-archive">
   <div class="archive-intro">
     <a href="{{ '/' | relative_url }}" class="archive-return">← Back to Deep Blue</a>
@@ -71,34 +71,39 @@ layout: default
 
     {% else %}
       {% comment %}
-        Visual Art and Photography use different orders of the same 22-image rhythm.
-        Visual Art: 6 standard, 5 featured, 6 standard, 5 compact.
-        Photography: 5 featured, 6 standard, 5 compact, 6 standard.
-        Reuse the unchanged gallery-tile include for single images, series, credits
-        and the existing browser-back-aware full-screen viewer.
+        Visual Art and Photography use equal-sized images within each band.
+        Only the number of columns changes; there are no special lead images.
+
+        Visual Art (34-post cycle): 6 standard (3 across), 10 compact (5),
+        6 standard (3), 12 dense (6).
+        Photography (34-post cycle): 10 compact (5), 6 standard (3),
+        12 dense (6), 6 standard (3).
+
+        All cards use the shared gallery-tile include; series flags, special
+        covers, image viewers and browser back behavior are unchanged.
       {% endcomment %}
       <div class="db-editorial-archive{% if page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}">
         {% for post in entries %}
-          {% assign pos = forloop.index0 | modulo: 22 %}
+          {% assign pos = forloop.index0 | modulo: 34 %}
           {% if page.category_filter == 'Photography' %}
-            {% if pos < 5 %}
-              {% assign segment = 'feature' %}{% assign seg_start = 0 %}{% assign seg_end = 4 %}
-            {% elsif pos < 11 %}
-              {% assign segment = 'standard' %}{% assign seg_start = 5 %}{% assign seg_end = 10 %}
+            {% if pos < 10 %}
+              {% assign segment = 'compact' %}{% assign seg_start = 0 %}{% assign seg_end = 9 %}
             {% elsif pos < 16 %}
-              {% assign segment = 'compact' %}{% assign seg_start = 11 %}{% assign seg_end = 15 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 10 %}{% assign seg_end = 15 %}
+            {% elsif pos < 28 %}
+              {% assign segment = 'dense' %}{% assign seg_start = 16 %}{% assign seg_end = 27 %}
             {% else %}
-              {% assign segment = 'standard' %}{% assign seg_start = 16 %}{% assign seg_end = 21 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 28 %}{% assign seg_end = 33 %}
             {% endif %}
           {% else %}
             {% if pos < 6 %}
               {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 5 %}
-            {% elsif pos < 11 %}
-              {% assign segment = 'feature' %}{% assign seg_start = 6 %}{% assign seg_end = 10 %}
-            {% elsif pos < 17 %}
-              {% assign segment = 'standard' %}{% assign seg_start = 11 %}{% assign seg_end = 16 %}
+            {% elsif pos < 16 %}
+              {% assign segment = 'compact' %}{% assign seg_start = 6 %}{% assign seg_end = 15 %}
+            {% elsif pos < 22 %}
+              {% assign segment = 'standard' %}{% assign seg_start = 16 %}{% assign seg_end = 21 %}
             {% else %}
-              {% assign segment = 'compact' %}{% assign seg_start = 17 %}{% assign seg_end = 21 %}
+              {% assign segment = 'dense' %}{% assign seg_start = 22 %}{% assign seg_end = 33 %}
             {% endif %}
           {% endif %}
 
@@ -106,28 +111,21 @@ layout: default
             {% if segment == 'standard' %}
               <div class="db-standard-grid">
             {% elsif segment == 'compact' %}
-              <div class="db-compact-band"><div class="db-compact-grid">
+              <section class="db-compact-band" aria-label="Artworks in compact grid">
+                <div class="db-compact-grid">
             {% else %}
-              <section class="db-feature-band" aria-label="Featured collection arrangement">
-                <div class="db-feature-lead">
+              <section class="db-dense-band" aria-label="Artworks in small grid">
+                <div class="db-dense-grid">
             {% endif %}
           {% endif %}
 
-          {% if segment == 'feature' and pos == seg_start %}
-            {% include gallery-tile.html post=post group='full-collection' lead=true %}
-            </div>
-            {% unless forloop.last %}<div class="db-feature-quartet">{% endunless %}
-          {% else %}
-            {% include gallery-tile.html post=post group='full-collection' %}
-          {% endif %}
+          {% include gallery-tile.html post=post group='full-collection' %}
 
           {% if pos == seg_end or forloop.last %}
             {% if segment == 'standard' %}
               </div>
-            {% elsif segment == 'compact' %}
-              </div></div>
             {% else %}
-              {% if pos != seg_start %}</div>{% endif %}
+                </div>
               </section>
             {% endif %}
           {% endif %}

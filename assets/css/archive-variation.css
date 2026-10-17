@@ -1,113 +1,85 @@
-/* Deep Blue · Visual Art archive editorial variation
-   Scoped entirely to the archive. All cards use the existing gallery-tile include.
-   CSS is loaded ONLY on the Visual Art archive page. */
+/* Deep Blue — Artwork and Photography density-only editorial galleries.
+   All items within a section have equal-sized image stages: no 'lead' tile.
+   Writing rules below are retained unchanged from the previous update. */
 .db-editorial-archive {
   display: flex;
   flex-direction: column;
-  gap: clamp(30px, 4vw, 58px);
+  gap: clamp(28px, 3.8vw, 55px);
 }
-.db-editorial-archive .gallery-tile {
-  min-width: 0;
-}
-.db-standard-grid,
-.db-compact-grid,
-.db-feature-quartet {
+.db-editorial-archive .gallery-tile { min-width: 0; }
+.db-standard-grid, .db-compact-grid, .db-dense-grid {
   display: grid;
   align-items: start;
 }
+/* The calm larger format: three equally sized tiles per row. */
 .db-standard-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 29px 18px;
 }
-.db-editorial-archive .db-standard-grid .gallery-image-stage {
-  aspect-ratio: 1 / 1;
-}
-
-/* Calm change of pace: one prominent work beside a 2 x 2 set. */
-.db-feature-band {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(16px, 2vw, 28px);
-  padding: clamp(18px, 2.8vw, 36px);
-  background: #eaf0ec;
-}
-.db-feature-lead > .gallery-tile--lead {
-  grid-column: auto;
-}
-.db-feature-lead .gallery-image-stage {
-  aspect-ratio: 1 / 1;
-}
-.db-feature-quartet {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px 15px;
-}
-.db-feature-quartet .gallery-image-stage {
+.db-editorial-archive .gallery-image-stage {
   aspect-ratio: 1 / 1;
   min-height: 0;
 }
-.db-feature-quartet .gallery-caption strong {
-  font-size: clamp(16px, 1.65vw, 21px);
-}
-.db-feature-lead .gallery-caption strong {
-  font-size: clamp(24px, 2.9vw, 36px);
-}
-.db-feature-band > .db-feature-lead:only-child {
-  max-width: 650px;
-}
-
-/* A denser strip without colored stripes: the artwork provides the color. */
+/* A restrained five-across section; no oversized image. */
 .db-compact-band {
-  padding-block: clamp(4px, 1vw, 14px);
-  border-top: 1px solid #d9e1db;
-  border-bottom: 1px solid #d9e1db;
+  padding: clamp(15px, 2.2vw, 26px);
+  background: #edf2ef;
 }
 .db-compact-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 16px 13px;
+  gap: 23px 13px;
 }
-.db-compact-grid .gallery-image-stage {
-  aspect-ratio: 1 / 1;
-  min-height: 0;
-}
+.db-compact-grid .gallery-caption { padding-top: 8px; }
 .db-compact-grid .gallery-caption strong {
-  font-size: clamp(16px, 1.55vw, 21px);
+  font-size: clamp(16px, 1.45vw, 21px);
 }
-.db-compact-grid .gallery-caption {
-  padding-top: 8px;
+/* More compact six-across section with just delicate framing rules. */
+.db-dense-band {
+  padding-block: clamp(10px, 1.5vw, 20px);
+  border-top: 1px solid #d9e1db;
+  border-bottom: 1px solid #d9e1db;
 }
+.db-dense-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 22px 11px;
+}
+.db-dense-grid .gallery-caption { padding-top: 8px; }
+.db-dense-grid .gallery-caption strong {
+  font-size: clamp(14px, 1.25vw, 19px);
+}
+.db-dense-grid .gallery-caption span { font-size: clamp(12px, 1.0vw, 15px); }
+/* Photography starts compact; a very slight cooler hue differentiates it. */
+.db-photo-archive .db-compact-band { background: #edf1f2; }
+.db-photo-archive .db-dense-band { border-color: #d5e0e4; }
 
-/* Tablet: fewer columns, no awkwardly tiny art or microscopic captions. */
-@media (max-width: 1100px) {
+/* Don't reduce readability or create awkwardly narrow columns on tablets. */
+@media (max-width: 1180px) {
+  .db-dense-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
   .db-compact-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .db-dense-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
   .db-standard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .db-compact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .db-feature-band { grid-template-columns: minmax(0, 1fr); }
-  .db-feature-lead { max-width: 650px; }
+  .db-dense-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-/* Mobile: the large work gets a full row; the others form a 2x2 grid.
-   Compact and standard groups both use two columns. */
+/* On phones, limit all sections to two columns, preserving usable art sizes. */
 @media (max-width: 640px) {
   .db-editorial-archive { gap: 30px; }
   .db-standard-grid { gap: 22px 11px; }
-  .db-compact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 11px; }
-  .db-feature-band { padding: 17px 12px 22px; gap: 19px; }
-  .db-feature-quartet { gap: 21px 11px; }
-  .db-feature-quartet .gallery-caption strong,
-  .db-compact-grid .gallery-caption strong {
-    font-size: clamp(17px, 4.7vw, 23px);
+  .db-compact-band { padding: 15px 10px; }
+  .db-compact-grid, .db-dense-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 11px;
   }
-  .db-feature-lead .gallery-image-stage { aspect-ratio: 4 / 3; }
-  .db-feature-lead .gallery-caption strong { font-size: 27px; }
-  .db-editorial-archive .gallery-image-stage { min-height: 0; }
+  .db-compact-grid .gallery-caption strong,
+  .db-dense-grid .gallery-caption strong {
+    font-size: clamp(17px, 4.5vw, 22px);
+  }
+  .db-dense-grid .gallery-caption span { font-size: 14px; }
 }
-
-/* PHOTOGRAPHY — same vocabulary, a different editorial sequence.
-   Slightly cooler tint than art, so the two galleries feel related not identical. */
-.db-photo-archive .db-feature-band { background:#e9eef0; }
-.db-photo-archive .db-compact-band { border-color:#d5e0e4; }
 
 /* WRITING — varied groupings, but never microscopic text previews. */
 .db-writing-editorial {
