@@ -1,6 +1,6 @@
 ---
 title: Paper and Charcoal Portrait
-date: 2026-10-16
+date: 2026-10-17
 category: Visual Art
 author: Willow Faust
 cover: /assets/uploads/paper-portrait-copy.jpg
