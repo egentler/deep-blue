@@ -1,0 +1,94 @@
+---
+title: "Zombie War: Oral Vignette"
+date: 2023-10-18
+category: Writing
+author: Madigan Willey
+summary: An original hyper-realistic oral vignette in the style of World War Z.
+preview: I sit down in a tattered green chair across from 21-year-old Claire
+  Gladwin, who sits in a rocking chair. We’re in her house in Derby, Vermont.
+  The room is dimly lit by candles, and the fog rolling over Lake Salem only
+  contributes to the...
+show_cover_in_series: true
+sample: false
+---
+**Derby, Vermont, United States**
+
+**[I sit down in a tattered green chair across from 21-year-old Claire Gladwin, who sits in a rocking chair. We’re in her house in Derby, Vermont. The room is dimly lit by candles, and the fog rolling over Lake Salem only contributes to the eerie feel of the room. She pulls a blanket off the back of her chair and puts it over her legs. As I adjust and get ready to start the interview, she watches me, tucking a strand of faded blonde hair behind her ear and then pulling her sleeves down over her hands. When I settle in, pen to paper, she averts her gaze and silently refuses to start. I look past her, to the bookshelf. On it sits a picture of what looks to be a younger Claire hugging a Newfoundland with black and white fur. I ask about this to ease into the interview.]**
+
+That’s Benny. That’s um… that’s the last picture of us together. Right before I was sent off. When I was, Mariam, my mother, gave him to some of her friends. They beat the shit out of him though and he didn’t last very long.
+
+**[“Way to start it easy”, I think to myself.]**
+
+That’s not what you’re here to talk about, and I’m not a big fan of small talk. Can we just get on with it? Reliving this bullshit is enough as is, there’s no need to drag it out.
+
+**[She pulls out a cigarette, lights it, and hesitates as she goes to bring it to her mouth. She shakes herself out of her own head, and puts the cigarette out on the arm of the rocking chair with not even a single drag taken. There’s a cluster of ash rings and blackened circles in the wood around the same area.]**
+
+***Can you tell me about where you were?***
+
+Oh Lord, can I tell you. Brattleboro’s safe zone, or safe building, really, used to be a mental hospital. That’s where I was, but I’m not insane or like… crazy. I’m not. Mariam is, she’s who got me landed in there. I didn’t even do anything. I wasn’t suicidal, not until I got there. But that’s what she told everyone. I was at the hospital for a goddamn cast removal, Luce came to visit me, she was my girlfriend, and soon as my mom finds out I’m dating a girl she goes batshit and tells all these stories to the doctors about how I’m gearing up to off myself. Luce leaves, I get heading home, and with no warning whatsoever, my mom wakes me up the next morning with a bag packed for me, practically shoved me into the car and started driving.
+
+I had no time to text Luce, so my mother was the only person aware of where I was going. Not even I knew at the time. I just cried and cried and cried. I cursed her out and said some pretty horrible things to her. I don’t regret it though. And I wouldn’t take any of it back. 
+
+When we got to Brattleboro, she tried to lead me by my arm. I was so angry with her though… I ripped my arm away from her and stormed in on my own. The sign I saw outside the property that read “Brattleboro Retreat” really sent me over the edge. Probably was acting like I needed to be there. Can’t even remember much of what happened that day. Or most of the days I was there. I know there was a group of kids who seemed like decent people, not crazy like the rest of them. I don’t even know their names, I didn’t care to ask. I heard one of ‘em get called Brick at one point but I doubt that was actually his name. There was another asshole in that group who wasn’t a decent person. No fucking boundaries, none. I was 15 at the time, and I’m sure he was 18, maybe 19. Kept telling me shit about how bad he wanted me and how he knew I wanted him. And in case you can’t recall, I got into that hellhole because my mom found out I’m a lesbian. 
+
+Anyway, where I was. Brattleboro Retreat. Do you know that it used to be called an asylum? They changed the name from the Vermont Asylum for the Insane to… what it is now, probably just to make family members feel better about dumping their kids, siblings, parents, whatever, there.
+
+Everything was painted green or some kind of blue-ish purple. There were these inlets in the wall that looked like beans and when I walked by one for the first time, some kid reached out and grabbed my ankle and bit me. This was before all the zombie shit, but I kicked him in the face still and within, what, 20 minutes? I was already restrained because I defended myself from a rabid six year old. 
+
+They brought me to my room and went through my bag. They took out my drawstring sweatpants, my sneakers, two belts, and a hoodie. Apparently, Mariam didn’t think through the bag she packed for me well enough, because I’m not allowed to have strings or laces or belts… now that I think of it, she probably shoved it all in there on purpose. What I had left in the small bag that she packed, was four t-shirts, one tank top, two pairs of leggings, a pair of jeans that I couldn’t wear because I didn’t have my belts, and the sneakers returned to me without laces. Like, did they really think I was gonna tie a bunch of shoes laces and drawstrings together just to hang myself? If I was going to kill myself, that’s sure as hell not how I’d do it.
+
+Anyway, when I start unpacking my bag, I see something smeared on the wall. It's snot. Like actual snot. I wanted to get out of that place so bad, how am I supposed to sleep next to a wall with snot smeared all over it? The fuck? As I spent more time there, I only saw it more. There was snot and shit on the walls basically any way you turn your head. Kids, teenagers, even adults, would be playing with whatever bodily fluid or bodily waste they could produce at any given moment. That’s the stuff you definitely won’t see if you try to look up what it’s like there. The ‘friendly and welcoming staff’ pick favorites and neglect all the other patients. Kids scream in the middle of the night and a chorus of laughter, it sounds just like hyenas, follows right behind. Sometimes we’d have this group therapy thing, and every time I would just sit in my chair and observe it all. There was this one little boy, I actually felt bad for him, who would get these severe episodes that often resulted in him ripping out his hair or tearing apart his skin with his nails. The attendants wouldn’t even clean him up properly, he’d have chunks of solidified blood caught in what hair was left on his head, and he has scars and open wounds all over his arms and legs, but the most are on his shoulders. There were older girls who would hiss at people when they walked by, one boy who had a split personality disorder, quite a number of people in drug rehab in various stages of withdrawal symptoms. It was just a sad sight, really.
+
+***Do you know how many patients were at the retreat?***
+
+There were probably about 400 total, but the kid’s sector was bad enough. While I was there, there were probably a maximum of about 150 kids admitted at a time, but I was there for four months so some people came and others left. But not me. And nobody visited me, either. Luce didn’t know where I was, but I’m sure Mariam fed her some bullshit just like she did to the nurses at the hospital.
+
+If you weren’t paying attention before, you’ll want to now. In the last two months of my time at Brattleboro, something shifted. Attendants were jumping at every little noise; be it a moan, a growl, a hiss, a crash, a thud, a scream, anything. This was shit we heard every day, every couple of minutes, really. And it’s not like they were new to the job, most of them had been there longer than me. Though, as time went on, more and more of them started leaving. I probably should’ve pieced things together by then, at least that something was wrong. But I didn’t. I just assumed the job became too much for them. I know being stuck in that place was too much for me, only I didn’t have a decision on whether I stayed or left. 
+
+If I had been able to see Luce, if she knew where I was, I’m positive I would’ve been more prepared, but God was I not.
+
+Apparently, the attendants were under strict order to keep the impending apocalypse hush hush from the patients. Probably to avoid us going even more crazy than we already were. But one girl, Ophelia, who was admitted because she kept predicting people’s deaths and it scared the shit out of her family, was talking to herself in the common area one night. I walked by and heard her go, “Fiona, Pete, José, LaMont, Karla… dead, dead, and dead. Not gone for long, nooooo, sir, not gone for long, nooooo, sir.” I didn’t recognize any of the names, but she must’ve listed off at least 30 while I was standing there, and I know she had been going on for a while before too. I was able to just shrug that one off, but the only thing that really got to me, got deep in my mind, was the interaction I had with Ophelia just a few days later. I was trying to get to a quilt that had been laid over the back of a chair, and she was sitting between me and that chair. When I walked past her, she grabbed my arm and held tight. I snapped my head towards her and said through my teeth, “Let. Go.” All she did was stare up at me with tears in her eyes. **[Claire’s eyes start to water, her voice breaks for a moment.]** I leaned back a bit, because emotion wasn’t a common display of her’s. And she just whimpered to me, “Lucille.” God, I don’t know if I wanted more to slap her, start crying, or bust out of that godforsaken place and find my way back to Luce. I didn’t think about anything else for probably two weeks. Not until I had to.
+
+***Why did you have to?***
+
+The attack.
+
+***Right. What was it like to be so cut off from everything happening and have it sprung on you all at once in the form of an attack?***
+
+It was stupid, that’s what it was. If *one* person had told any of us, we could have been so much more prepared, at least those of us who were mentally capable. But we got nothing, nothing at all. Instead, we had to defend ourselves. Do you have any idea how many patients died? Or how many turned? 103 dead, 291 turned. Which leaves, what? A max of ten who made it out? But I’d say it’s closer to three or four. It was absurd.
+
+***Where were the attendants? If they knew, why didn’t they prepare?***
+
+What attendants? There were only seven left by the time the attack came. Seven, for almost 400 patients, the rest of them fled north or locked themselves inside or… whatever they thought would save them. I doubt it did, and honestly, I hope they’re gone. What kind of asshole dips out on the people they’re responsible for without warning them of what’s coming?
+
+***Can you tell me about your experience on the day of the attack?***
+
+Sure. I think I was sitting in the common area when it started. I heard glass breaking and screams from the patient rooms, and I wish I still had that instinct that told me those noises meant something was wrong. But four months in a psych ward does that to you. So I ignored it. I was particularly pissed off that day because it was me and Luce’s anniversary, July 16th, but I obviously didn’t get to see her or give her a gift, and all I could think about is how she probably felt… **[She trails off and goes silent for a minute.]** 
+
+Anyway, somebody put their hand on my shoulder and before I even processed that it was there, I whipped around and punched them right in the face. **[chuckles]** I bet you can imagine my surprise when I see a zombie standing in front of me. His head fell right off when I hit him, it was disgusting. I thought I was dreaming, or hallucinating, really. Like, c’mon, zombies? And nobody told *anyone*? Why the fuck would they do that to us?
+
+But after punching that first one, I realized everything happening around me. I could hear those noises, those… vulgar moans and screeches. Have you ever heard them screech? **[I shake my head.]** If you’ve ever truthfully described a scream from a horror movie as ‘bloodcurdling,’ you have no idea how terrifying these ones are. There wasn’t any hesitation either, everything happened all at once out of nowhere. They were swarming the halls; how that many of them got in is beyond me. I didn’t even recognize most of them, they probably came from outside. If you ever watched The Walking Dead before all of this happened, Lord knows nobody watches it anymore, it’s right outside our doors, but it’s like that scene from one of the very first episodes, you turn a corner and suddenly more zombies than you can count are swarming everything you can see. Then I turned and there was even more behind me. I almost just jumped into the hoard and let them have at me right there. But I thought back to what Ophelia said to me. I sound so stupid saying that, but that’s what drove me. If Luce was going to be in danger, I wanted to be there. Maybe it wasn’t as hopeless as I thought. Maybe I could just… do something. Maybe I could save her, or at least get back to her. 
+
+***How did you even get out? Those places are made to keep people in.***
+
+I honestly don’t know. I mean, I do… I just don’t know how I came up with it. The swarm was pouring in from everywhere. My one advantage was that I was just me, and they reached the others before most of them could so much as look at me. I know it sounds cruel, but in a situation like that one, you take what you can get. So while they fed on the other patients, I tried to get out. They were coming from the patient rooms, of course, so that was my first choice. But the flow of zombies was ever increasing. I knew there was a window, probably multiple, that had been broken open. So I looked for other places. The windows in the common area were big enough to get through, but when I stood on the sill and tried to break it open, it wouldn’t budge. I guess that’s the point of it. One of those motherfuckers slammed themselves against the window I was hitting, and it scared the shit out of me. I fell back onto the floor and my head hit hard against the arm of one of the chairs. I was going to pass out, I should’ve. I don’t know why or how I didn’t, but it was probably driven by adrenaline or something like it.
+
+What really screwed me over is that my head started bleeding. And it drew the attention of every zombie within 50 feet of me. I knew, too, so I booked it for the hallway towards the cafeteria. A janitor’s cart had been abandoned, and I shoved it at the zombies coming after me. It took them out like bowling pins, but then it just kept going. Most of the ones it had run over had started getting back up, even one of them had lost a hand from the wheel rolling over her wrist, but she just kept coming.
+
+So I ran. I ran right away from them and locked myself in the cafeteria. I tried to just breathe but the zombies weren’t far behind and they just… *pounded* on the door. I pushed as many tables and chairs and carts in front of it as I could. When I pulled on one table, someone yelled, “STOP.” The little boy who would rip out his hair was under the table, curled up with one of the younger girls. I pulled them out from under and shoved the table against the door, then turned to look at them.
+
+They told me, “we were hiding, we’re sorry, we didn’t mean to.” They stayed clung to one another, but I needed help moving more chairs so I ripped them away from each other, and I saw it.
+
+The little boy with the torn apart arms and missing hair had bite marks on his shoulder. I grabbed him by his arms and screamed at him, “What happened, what happened, what happened?” And he just cried more and more. The other one screamed at me and told me not to hurt him. I shouldn’t be admitting it, but I slapped her right across the face. I couldn’t take it all, it was too much and I… snapped. I didn’t know it then, but the zombies are supposed to go into some coma-like state, I guess, before they turn. I don’t know why, but that just didn’t happen this time. I turned back to the little boy, and he had started making small jerky movements. He was turning and me and the little girl both knew it. He screeched just like the rest of them, and similar to the chorus of laughter that used to follow the screams in the night, the hoard outside the cafeteria screeched right back. It was so loud… God, I just pressed my hands hard against my ears and waited for it to end. But by the time it did, the little boy was six bites into the stomach of the little girl who was standing at my side. It’s a miracle he didn’t come for me… I was bigger, after all.
+
+But once again, I just ran. I didn’t try to help, it would’ve been useless. So I ran, I ran into the kitchen and I looked for a knife but I just couldn’t find one. They were probably locked up to keep the patients safe, but God, I was a patient and I sure as hell wasn’t safe right now.
+
+And it hit me then, it… it really hit me. I just collapsed on the ground and sobbed. Why? That was all I could think. I blamed Mariam, I blamed her for it all and I still do. I hit the back of my head off the counter a few times, and just curled up on the floor.
+
+I only laid there for about three minutes, and I swear to you I’m not making this up. It was like a movie, it felt so unreal. A beam of sun started shining through onto the floor right in front of my face. My head shot right up and I saw the window, broken open and cleared out, probably so that someone could escape earlier. It was a small window, barely big enough for a person to fit through, but I knew I could shimmy through. 
+
+And… that’s what I did. I squeezed my way out, there’s not much to it. It brought me out to the road along the back of the retreat. I could hear them through the walls, though. I could see them through the windows and I saw them swarming out into the fenced in yard and I saw them charging for the fence, for me. They reached through the bars and I jumped back. I saw two people running together from the front door, and I only knew they weren’t turned because they kept turning to look behind them. From there, I just ran. I ran as far as I could, but not into any sort of civilization. Even then, I knew that would be a bad idea.
+
+***Where did you go?***
+
+I ran along the water, I saw the woods, and I ran in. I followed the trails until I got to the Retreat Tower… I stayed there for a day or two, went into town when I felt like it was safe enough, hopped into a car that had been abandoned, and just drove. I drove back to Lyndonville, to Luce’s house. And it was… empty. She was just gone, her and her family. I don’t… I think we’re done; can we be done? We’re done.
