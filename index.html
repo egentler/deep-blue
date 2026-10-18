@@ -6,13 +6,81 @@ layout: default
 .gallery-section-heading h2 a { color: inherit; text-decoration: none; }
 .gallery-section-heading h2 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .13em; }
 .gallery-section-heading h2 a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; border-radius: 2px; }
+
+/* October 2026: square-thumbnail mosaics on the HOMEPAGE ONLY.
+   Artwork: one large left + two vertically stacked right.
+   Photography: four small left + one large right.
+   All full-resolution/series viewer behavior remains in gallery-tile.html. */
+.home-art-square-gallery,
+.home-photo-square-gallery {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+}
+.home-art-square-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.home-photo-square-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Square image STAGES only; credits remain below the art.
+   Do not crop original images; user-uploaded square thumbnails fit exactly. */
+.home-art-square-gallery > .gallery-tile .gallery-image-stage,
+.home-photo-square-gallery > .gallery-tile .gallery-image-stage {
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+}
+.home-art-square-gallery > .gallery-tile .gallery-image-stage img,
+.home-photo-square-gallery > .gallery-tile .gallery-image-stage img {
+  object-fit: contain;
+}
+
+/* nth-of-type counts FIGURE tiles and not the series' hidden DIALOG elements. */
+.home-art-square-gallery > .gallery-tile--lead {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+.home-art-square-gallery > .gallery-tile:nth-of-type(2) { grid-column: 3; grid-row: 1; }
+.home-art-square-gallery > .gallery-tile:nth-of-type(3) { grid-column: 3; grid-row: 2; }
+
+/* Latest photograph is the large tile at the right; the next four form a 2×2. */
+.home-photo-square-gallery > .gallery-tile--lead {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+}
+.home-photo-square-gallery > .gallery-tile:nth-of-type(2) { grid-column: 1; grid-row: 1; }
+.home-photo-square-gallery > .gallery-tile:nth-of-type(3) { grid-column: 2; grid-row: 1; }
+.home-photo-square-gallery > .gallery-tile:nth-of-type(4) { grid-column: 1; grid-row: 2; }
+.home-photo-square-gallery > .gallery-tile:nth-of-type(5) { grid-column: 2; grid-row: 2; }
+
+/* On phones put the featured square first, then show the smaller squares in pairs. */
+@media (max-width: 760px) {
+  .home-art-square-gallery,
+  .home-photo-square-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 11px;
+  }
+  .home-art-square-gallery > .gallery-tile,
+  .home-photo-square-gallery > .gallery-tile {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  /* Reset desktop position selectors, whose :nth-of-type specificity is higher. */
+  .home-art-square-gallery > .gallery-tile:nth-of-type(n+2),
+  .home-photo-square-gallery > .gallery-tile:nth-of-type(n+2) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .home-art-square-gallery > .gallery-tile--lead,
+  .home-photo-square-gallery > .gallery-tile--lead {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
 </style>
 <main class="gallery-home" id="latest">
   {% assign art_entries = site.posts | where: 'category', 'Visual Art' %}
   <section class="curated-section" id="visual-art" aria-labelledby="art-heading">
     <div class="gallery-section-heading"><div><div class="eyebrow">01 / Made by hand &amp; imagination</div><h2 id="art-heading"><a href="{{ '/visual-art/' | relative_url }}">Visual art<span class="accent-dot">.</span></a></h2></div></div>
     {% if art_entries.size > 0 %}
-    <div class="featured-gallery">
+    <div class="featured-gallery home-art-square-gallery">
       {% for post in art_entries limit:3 %}
       {% include gallery-tile.html post=post group='art' lead=forloop.first %}
       {% endfor %}
@@ -43,8 +111,8 @@ layout: default
   <section class="curated-section" id="photography" aria-labelledby="photography-heading">
     <div class="gallery-section-heading"><div><div class="eyebrow">03 / Through the lens</div><h2 id="photography-heading"><a href="{{ '/photography/' | relative_url }}">Photography<span class="accent-dot">.</span></a></h2></div></div>
     {% if photo_entries.size > 0 %}
-    <div class="featured-gallery">
-      {% for post in photo_entries limit:3 %}
+    <div class="featured-gallery home-photo-square-gallery">
+      {% for post in photo_entries limit:5 %}
       {% include gallery-tile.html post=post group='photography' lead=forloop.first %}
       {% endfor %}
     </div>
