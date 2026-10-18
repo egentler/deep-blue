@@ -105,13 +105,58 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
   <div class="comic-reader-end"><a href="{{ '/writing/' | relative_url }}">← Return to writing</a></div>
 </main>
 {% else %}
+{% if page.category == 'Writing' %}
+<style>
+/* Editorial illustration: only ordinary Writing pieces, not comic series. */
+.article-content--illustrated { display: flow-root; }
+.article-inline-illustration {
+  float: left;
+  width: min(29%, 180px);
+  margin: 4px 21px 12px 0;
+}
+.article-inline-illustration img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 232px;
+  object-fit: contain;
+  object-position: top left;
+  background: transparent;
+}
+.article-inline-illustration figcaption {
+  margin-top: 7px;
+  color: #647b78;
+  font: normal 11px/1.45 'DM Sans', Arial, sans-serif;
+}
+/* Keep the first paragraph next to the artwork, not pushed down by its margin. */
+.article-content--illustrated > p:first-of-type { margin-top: 0; }
+@media (max-width: 640px) {
+  .article-inline-illustration {
+    width: min(39%, 145px);
+    margin: 3px 14px 9px 0;
+  }
+  .article-inline-illustration img { max-height: 200px; }
+}
+</style>
+{% endif %}
 <article class="article-shell">
   <div class="article-eyebrow">{{ page.category | escape }} · {{ page.date | date: "%B %-d, %Y" }}{% if page.sample %} · Example entry{% endif %}</div>
   <h1 class="article-title">{{ page.title | escape }}</h1>
   {% if page.summary %}<p class="article-summary">{{ page.summary | escape }}</p>{% endif %}
   <div class="article-info"><span>{{ page.author | default: 'Student contributor' | escape }}</span>{% if page.medium %}<span>{{ page.medium | escape }}</span>{% endif %}</div>
-  {% if page.cover and page.cover != '' %}<figure class="article-image"><img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}">{% if page.medium %}<figcaption>{{ page.medium | escape }}</figcaption>{% endif %}</figure>{% endif %}
-  <div class="article-content">{{ content }}</div>
+  {% if page.category != 'Writing' and page.cover and page.cover != '' %}
+    <figure class="article-image"><img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}">{% if page.medium %}<figcaption>{{ page.medium | escape }}</figcaption>{% endif %}</figure>
+  {% endif %}
+  <div class="article-content{% if page.category == 'Writing' and page.cover and page.cover != '' %} article-content--illustrated{% endif %}">
+    {% if page.category == 'Writing' and page.cover and page.cover != '' %}
+      <figure class="article-inline-illustration">
+        <img src="{{ page.cover | relative_url }}" alt="{{ page.cover_caption | default: page.title | escape }}">
+        {% if page.cover_caption and page.cover_caption != '' %}<figcaption>{{ page.cover_caption | escape }}</figcaption>{% elsif page.medium and page.medium != '' %}<figcaption>{{ page.medium | escape }}</figcaption>{% endif %}
+      </figure>
+    {% endif %}
+    {{ content }}
+  </div>
   <a class="article-back" href="{{ '/' | relative_url }}#latest">← Return to the journal</a>
 </article>
 {% endif %}

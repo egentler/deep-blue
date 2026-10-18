@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign entries = site.posts | where: 'category', page.category_filter %}
-<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261017-photo-rows-1">
+<link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261018-writing-fit-1">
 <main class="gallery-archive">
   <div class="archive-intro">
     <a href="{{ '/' | relative_url }}" class="archive-return">← Back to Deep Blue</a>
@@ -136,6 +136,54 @@ layout: default
     {% endif %}
   {% else %}
     <p class="empty-gallery">There's nothing in this collection yet. Check back soon.</p>
+  {% endif %}
+  {% if page.category_filter == 'Writing' %}
+  <script>
+  // Keep the content the author entered unchanged. Make *only* the featured
+  // preview as large as its current card allows, up to a readable maximum.
+  (() => {
+    const featured = Array.from(document.querySelectorAll('.db-writing-card--lead .writing-snippet'));
+    if (!featured.length) return;
+    let queued = false;
+    function fitFeaturedPreviews() {
+      queued = false;
+      featured.forEach(snippet => {
+        const card = snippet.closest('.writing-card');
+        const bottom = card && card.querySelector('.writing-card-bottom');
+        if (!bottom || !snippet.textContent.trim()) return;
+        // Reset first, so resizing smaller is reliable as well.
+        snippet.style.fontSize = '18px';
+        const available = bottom.getBoundingClientRect().top -
+          snippet.getBoundingClientRect().top -
+          parseFloat(getComputedStyle(snippet).marginBottom || 0) - 6;
+        if (available < 45) return;
+        const range = document.createRange();
+        range.selectNodeContents(snippet);
+        let low = 18, high = 52;
+        // Binary-search the largest size fitting roughly 92% of the space.
+        // A cap prevents a two-word preview becoming absurdly oversized.
+        for (let i = 0; i < 9; i++) {
+          const mid = (low + high) / 2;
+          snippet.style.fontSize = mid + 'px';
+          if (range.getBoundingClientRect().height <= available * .92) low = mid;
+          else high = mid;
+        }
+        snippet.style.fontSize = Math.floor(low * 10) / 10 + 'px';
+      });
+    }
+    function scheduleFit() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(fitFeaturedPreviews);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', scheduleFit, { once: true });
+    } else scheduleFit();
+    window.addEventListener('load', scheduleFit);
+    window.addEventListener('resize', scheduleFit, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+  })();
+  </script>
   {% endif %}
   <a href="{{ '/' | relative_url }}" class="all-category-link">← Back to the homepage</a>
 </main>

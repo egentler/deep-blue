@@ -150,3 +150,17 @@
   .db-writing-feature-support { gap:12px; }
   .db-writing-feature-support .writing-card { min-height:210px; }
 }
+
+
+/* October 18: featured Writing previews resize only in the highlighted position.
+   The script in archive.html chooses a fitting font size for the text supplied
+   in Pages CMS; other writing cards keep their existing typography. */
+.db-writing-feature-band .db-writing-card--lead .writing-snippet {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: 18px;
+  line-height: 1.18;
+  letter-spacing: -.018em;
+  min-height: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
