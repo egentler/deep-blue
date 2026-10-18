@@ -3,7 +3,7 @@ title: "Zombie War: Oral Vignette"
 date: 2023-10-18
 category: Writing
 author: Madigan Willey
-summary: An original hyper-realistic oral vignette in the style of World War Z.
+summary: A hyper-realistic oral history vignette in the style of World War Z.
 preview: I sit down in a tattered green chair across from 21-year-old Claire
   Gladwin, who sits in a rocking chair. We’re in her house in Derby, Vermont.
   The room is dimly lit by candles, and the fog rolling over Lake Salem only
