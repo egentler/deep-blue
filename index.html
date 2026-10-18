@@ -77,6 +77,18 @@ layout: default
     grid-row: auto;
   }
 }
+
+/* Homepage-only spacing refinements: shorten the gap from each “View all”
+   link to the section divider and from the divider to the next heading.
+   The image mosaics, Writing cards and gallery archives are untouched. */
+.gallery-home .all-category-link { margin-top: 14px; }
+.gallery-home .curated-section { padding-bottom: 28px; }
+.gallery-home .curated-section:not(:first-child) { padding-top: 24px; }
+@media (max-width: 640px) {
+  .gallery-home .all-category-link { margin-top: 12px; }
+  .gallery-home .curated-section { padding-bottom: 26px; }
+  .gallery-home .curated-section:not(:first-child) { padding-top: 22px; }
+}
 </style>
 <main class="gallery-home" id="latest">
   {% assign art_entries = site.posts | where: 'category', 'Visual Art' %}
