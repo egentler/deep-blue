@@ -3,7 +3,8 @@ title: "Landscape Collection "
 date: 2025-09-16
 category: Photography
 author: Cadence Hansen
-cover: /assets/uploads/1.jpeg
+cover: /assets/uploads/chcrop.jpg
+show_cover_in_series: false
 series_images:
   - image: /assets/uploads/3.jpeg
   - image: /assets/uploads/4.jpeg
@@ -14,5 +15,6 @@ series_images:
   - image: /assets/uploads/11.jpeg
   - image: /assets/uploads/16.jpeg
   - image: /assets/uploads/17.jpeg
+  - image: /assets/uploads/1-1.jpeg
 sample: false
 ---
