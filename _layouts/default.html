@@ -28,8 +28,11 @@
    on phones/tablets the same CMS text wraps naturally. */
 .hero-inner--single{display:block}
 .hero-inner--single .hero-copy{max-width:100%;width:100%;line-height:1.35}
+/* On desktop, always display the two sentences as two uninterrupted lines.
+   Keep natural wrapping on narrow/mobile viewports. */
 .hero-inner--single .hero-copy .hero-copy-desktop-break{display:none}
-@media (min-width:1200px){
+@media (min-width:641px){
+  .hero-inner--single .hero-copy{white-space:nowrap}
   .hero-inner--single .hero-copy .hero-copy-desktop-break{display:inline}
 }
 
