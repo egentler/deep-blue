@@ -8,12 +8,12 @@ cover_credit: Ranger Doe
 show_cover_in_series: false
 series_images:
   - image: /assets/uploads/charcoal1-4.jpeg
-    artist: Ranger Doe
+    artist: Anonymous Ranger
   - image: /assets/uploads/charcoal2-1.jpeg
-    artist: Ranger Doe
+    artist: Anonymous Ranger
   - image: /assets/uploads/charcoal-3.jpeg
-    artist: Ranger Doe
+    artist: Anonymous Ranger
   - image: /assets/uploads/charcoal-4.jpeg
-    artist: Ranger Doe
+    artist: Anonymous Ranger
 sample: false
 ---
