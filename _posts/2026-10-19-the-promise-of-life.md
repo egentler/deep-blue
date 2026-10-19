@@ -6,7 +6,8 @@ author: Gemma Powers
 preview: |-
   The sunlight feels heavy, a burden of gold,
   On a story I’m tired of watching unfold.
-  The waking is harder...
+  The waking is harder than closing my eyes,
+  Just waiting for...
 show_cover_in_series: true
 sample: false
 ---
