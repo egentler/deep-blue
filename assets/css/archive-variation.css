@@ -167,3 +167,30 @@
   overflow-wrap: anywhere;
   text-wrap: pretty;
 }
+
+/* October 19: On phones, Photography becomes one continuous two-column
+   archive rather than preserving the desktop 3 / 6 / 2 / 5 bands.
+   display:contents removes only the band boxes. It keeps the existing
+   photo tile, caption, series badge, viewer templates, and post order.
+   Art and Writing are not affected. */
+@media (max-width: 640px) {
+  .db-editorial-archive.db-photo-archive {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 11px;
+    row-gap: 22px;
+    align-items: start;
+  }
+  .db-photo-archive > .db-standard-grid,
+  .db-photo-archive > .db-photo-wide-grid,
+  .db-photo-archive > .db-compact-band,
+  .db-photo-archive > .db-dense-band,
+  .db-photo-archive .db-compact-grid,
+  .db-photo-archive .db-dense-grid {
+    display: contents;
+  }
+  .db-photo-archive .gallery-tile {
+    min-width: 0;
+    margin: 0;
+  }
+}
