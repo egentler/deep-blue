@@ -5,7 +5,8 @@ category: Writing
 author: Payton Chafee
 preview: |
   “I could be the sunlight” 
-  she said as she looked up at the blazing torch in the sky.
+  she said as she looked up 
+  at the blazing torch in the sky.
   The sunlight is bright, vibrant, and light. 
   A lot of the time...
 show_cover_in_series: true
