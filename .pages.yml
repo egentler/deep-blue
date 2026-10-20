@@ -12,8 +12,8 @@ content:
     filename: "{year}-{month}-{day}-{primary}.md"
     view:
       primary: title
-      fields: [title, date, category, author]
-      sort: [date, title]
+      fields: [title, date, category, published, author]
+      sort: [date, published, title]
       default:
         sort: date
         order: desc
@@ -34,6 +34,11 @@ content:
         required: true
         options:
           values: [Writing, Photography, Visual Art]
+      - name: published
+        label: Published
+        type: boolean
+        default: true
+        description: On = visible on Deep Blue. Off = draft saved in Pages CMS and GitHub, hidden from the public website. Your GitHub repository and uploaded media are still public.
       - name: author
         label: Byline (use approved name or anonymous credit)
         type: string
