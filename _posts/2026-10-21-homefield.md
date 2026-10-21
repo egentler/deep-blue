@@ -22,11 +22,9 @@ all you have done or all you have been or a place to find the new you. Just brin
 
 others who share your views, your dreams, your thoughts, your wisdom.  
 
-
 The great spirit who has your back will still warm your soul and will pat your back to reassure you are
 
 safe and at peace. We ask nothing and all is for the taking.  
-
 
 A warm breeze blows every day to comfort the soul
 
