@@ -33,7 +33,7 @@ content:
         type: select
         required: true
         options:
-          values: [Writing, Photography, Visual Art]
+          values: [Writing, Photography, Visual Art, Neighbors]
       - name: published
         label: Published
         type: boolean
