@@ -1,7 +1,7 @@
 ---
 title: Iris Paintings
 date: 2026-10-21
-category: Visual Art
+category: Neighbors
 published: false
 author: Stephanie Harper
 summary: "Stephanie Harper is the current Art teacher at Lake Region. She lives
