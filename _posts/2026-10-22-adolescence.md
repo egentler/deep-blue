@@ -1,9 +1,11 @@
 ---
 title: Adolescence
-date: 2026-10-22
+date: 2026-10-10
 category: Writing
-published: false
-author: Pseudonym for AF
+published: true
+author: Atlas L. Fox
+summary: "Atlas L. Fox is the pen name of one of LR's most talented and prolific
+  student writers. "
 preview: |-
   Walking through the woods, step by step, baby steps.
   A lush forest, golden dappled light.
@@ -12,7 +14,6 @@ preview: |-
 show_cover_in_series: true
 sample: false
 ---
-  
 Walking through the woods, step by step, baby steps.
 
 A lush forest, golden dappled light.
