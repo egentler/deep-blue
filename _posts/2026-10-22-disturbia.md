@@ -2,8 +2,10 @@
 title: Disturbia
 date: 2026-10-22
 category: Writing
-published: false
-author: Pseudonym for AF
+published: true
+author: Atlas L. Fox
+summary: "Atlas L. Fox is the pen name of one of LR's most talented and prolific
+  student writers. "
 preview: Engulfed in darkness, rays of light dappled through the shadows around
   her. She stared up at the sky. The sky stared down in response.The ground had
   turned dry generations ago. The land parched...
