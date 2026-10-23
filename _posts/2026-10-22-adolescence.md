@@ -4,8 +4,8 @@ date: 2026-10-22
 category: Writing
 published: true
 author: Atlas L. Fox
-summary: "Atlas L. Fox is the pen name of one of LR's most talented and prolific
-  student writers. "
+summary: "Atlas L. Fox is the pen name used by one of LR's most creative and
+  prolific students. "
 preview: |-
   Walking through the woods, step by step, baby steps.
   A lush forest, golden dappled light.
