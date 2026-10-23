@@ -1,6 +1,6 @@
 ---
 title: Disturbia
-date: 2026-10-22
+date: 2026-10-10
 category: Writing
 published: true
 author: Atlas L. Fox
