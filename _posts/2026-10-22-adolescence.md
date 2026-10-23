@@ -1,6 +1,6 @@
 ---
 title: Adolescence
-date: 2026-10-10
+date: 2026-10-22
 category: Writing
 published: true
 author: Atlas L. Fox
