@@ -10,7 +10,10 @@ layout: default
   {% assign wave_entries = site.posts | where: 'category', 'Wavelengths' %}
   {% assign entries = old_photo_entries | concat: wave_entries | sort: 'date' | reverse %}
   {% for item in entries %}
-    {% if item.audio_file != blank or item.video_file != blank or item.video_url != blank %}
+    {% assign db_item_audio = item.audio_file | default: '' | strip %}
+    {% assign db_item_video = item.video_file | default: '' | strip %}
+    {% assign db_item_video_url = item.video_url | default: '' | strip %}
+    {% if db_item_audio != '' or db_item_video != '' or db_item_video_url != '' %}
       {% assign has_av_entries = true %}
     {% endif %}
   {% endfor %}

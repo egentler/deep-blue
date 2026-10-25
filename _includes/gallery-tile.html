@@ -3,11 +3,19 @@
 {% if piece.series_images and piece.series_images.size > 0 %}{% assign is_series = true %}{% endif %}
 {% assign series_display_count = piece.series_images.size | default: 0 %}
 {% if piece.show_cover_in_series != false and piece.cover and piece.cover != '' %}{% assign series_display_count = series_display_count | plus: 1 %}{% endif %}
+{% comment %}
+  Pages CMS leaves unused audio/video fields unset on existing photographs.
+  Normalize unset fields to empty strings before making media-type decisions;
+  comparing a missing Liquid value to `blank` can misclassify photographs.
+{% endcomment %}
+{% assign db_video_file = piece.video_file | default: '' | strip %}
+{% assign db_video_url = piece.video_url | default: '' | strip %}
+{% assign db_audio_file = piece.audio_file | default: '' | strip %}
 {% assign is_media = false %}
 {% assign is_video = false %}
 {% assign is_audio = false %}
-{% if piece.video_file != blank or piece.video_url != blank %}{% assign is_video = true %}{% assign is_media = true %}
-{% elsif piece.audio_file != blank %}{% assign is_audio = true %}{% assign is_media = true %}{% endif %}
+{% if db_video_file != '' or db_video_url != '' %}{% assign is_video = true %}{% assign is_media = true %}
+{% elsif db_audio_file != '' %}{% assign is_audio = true %}{% assign is_media = true %}{% endif %}
 {% if is_media %}
 <figure class="gallery-tile gallery-tile--media{% if is_audio %} gallery-tile--audio{% else %} gallery-tile--video{% endif %}{% if include.lead %} gallery-tile--lead{% endif %}">
   <a class="gallery-media-link" href="{{ piece.url | relative_url }}" aria-label="{% if is_audio %}Listen to{% else %}Watch{% endif %} {{ piece.title | escape }}">
@@ -25,8 +33,8 @@
   <figcaption class="gallery-caption db-media-caption">
     <strong><a href="{{ piece.url | relative_url }}">{{ piece.title | escape }}</a></strong>
     <span>{{ piece.author | default: 'Student contributor' | escape }}{% if piece.medium %} · {{ piece.medium | escape }}{% endif %}</span>
-    {% if is_audio and include.inline_player and piece.audio_file != '' %}
-    <audio class="db-inline-audio" controls preload="none" aria-label="Listen to {{ piece.title | escape }}"><source src="{{ piece.audio_file | relative_url }}">Your browser cannot play this audio. <a href="{{ piece.audio_file | relative_url }}">Get the audio file</a>.</audio>
+    {% if is_audio and include.inline_player and db_audio_file != '' %}
+    <audio class="db-inline-audio" controls preload="none" aria-label="Listen to {{ piece.title | escape }}"><source src="{{ db_audio_file | relative_url }}">Your browser cannot play this audio. <a href="{{ db_audio_file | relative_url }}">Get the audio file</a>.</audio>
     {% else %}
     <a class="db-media-action" href="{{ piece.url | relative_url }}">{% if is_video %}Watch performance{% else %}Listen to composition{% endif %} <span aria-hidden="true">→</span></a>
     {% endif %}
