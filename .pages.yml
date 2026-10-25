@@ -33,8 +33,7 @@ content:
         type: select
         required: true
         options:
-          values: [Writing, Visual Art, Wavelengths, Photography, Neighbors]
-      # Legacy Photography items stay valid; new photo/audio/video posts use Wavelengths.
+          values: [Writing, Visual Art, Wavelengths, Neighbors]
       - name: audio_file
         label: Audio composition (MP3 recommended)
         type: file

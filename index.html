@@ -53,6 +53,11 @@ layout: default
 .home-photo-square-gallery > .gallery-tile:nth-of-type(4) { grid-column: 1; grid-row: 2; }
 .home-photo-square-gallery > .gallery-tile:nth-of-type(5) { grid-column: 2; grid-row: 2; }
 
+/* On the homepage, an audio thumbnail already opens its listening page.
+   Suppress its redundant call-to-action link to keep the grid captions aligned.
+   The Wavelengths archive is unaffected. */
+.home-photo-square-gallery > .gallery-tile--audio .db-media-action { display: none; }
+
 /* If no photograph is available, leave music/video in equal-sized cards. */
 .home-photo-square-gallery--no-feature { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .home-photo-square-gallery--no-feature > .gallery-tile:nth-of-type(n) {
