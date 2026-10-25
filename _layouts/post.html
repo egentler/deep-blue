@@ -140,13 +140,33 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
 }
 </style>
 {% endif %}
-<article class="article-shell">
-  <div class="article-eyebrow">{{ page.category | escape }} · {{ page.date | date: "%B %-d, %Y" }}{% if page.sample %} · Example entry{% endif %}</div>
+<article class="article-shell{% if page.audio_file != blank or page.video_file != blank or page.video_url != blank %} article-shell--media{% endif %}">
+  <div class="article-eyebrow">{% if page.category == 'Photography' %}Wavelengths{% else %}{{ page.category | escape }}{% endif %} · {{ page.date | date: "%B %-d, %Y" }}{% if page.sample %} · Example entry{% endif %}</div>
   <h1 class="article-title">{{ page.title | escape }}</h1>
   {% if page.summary %}<p class="article-summary">{{ page.summary | escape }}</p>{% endif %}
   <div class="article-info"><span>{{ page.author | default: 'Student contributor' | escape }}</span>{% if page.medium %}<span>{{ page.medium | escape }}</span>{% endif %}</div>
-  {% if page.category != 'Writing' and page.cover and page.cover != '' %}
+  {% if page.category != 'Writing' and page.cover and page.cover != '' and page.video_file == blank and page.video_url == blank %}
     <figure class="article-image"><img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}">{% if page.medium %}<figcaption>{{ page.medium | escape }}</figcaption>{% endif %}</figure>
+  {% endif %}
+  {% if page.video_file and page.video_file != '' %}
+    <div class="db-post-video">
+      <video controls playsinline preload="metadata"{% if page.cover and page.cover != '' %} poster="{{ page.cover | relative_url }}"{% endif %} aria-label="Performance video: {{ page.title | escape }}">
+        <source src="{{ page.video_file | relative_url }}">
+        {% if page.captions_file and page.captions_file != '' %}<track kind="captions" src="{{ page.captions_file | relative_url }}" srclang="en" label="English captions" default>{% endif %}
+        Your browser cannot play the video. <a href="{{ page.video_file | relative_url }}">Download the video</a>.
+      </video>
+    </div>
+  {% elsif page.video_url and page.video_url != '' %}
+    <div class="db-post-video db-external-video" data-video-url="{{ page.video_url | escape }}" data-video-title="{{ page.title | escape }}">
+      <p><a href="{{ page.video_url | escape }}" rel="noopener noreferrer" target="_blank">Watch this performance video</a></p>
+    </div>
+    <script defer src="{{ '/assets/js/wavelengths-media.js' | relative_url }}"></script>
+  {% endif %}
+  {% if page.audio_file and page.audio_file != '' %}
+    <div class="db-post-audio" aria-label="Audio player for {{ page.title | escape }}">
+      <span class="db-post-audio-label">Listen to the composition</span>
+      <audio controls preload="metadata" aria-label="{{ page.title | escape }}"><source src="{{ page.audio_file | relative_url }}">Your browser cannot play this audio. <a href="{{ page.audio_file | relative_url }}">Download the audio</a>.</audio>
+    </div>
   {% endif %}
   <div class="article-content{% if page.category == 'Writing' and page.cover and page.cover != '' %} article-content--illustrated{% endif %}">
     {% if page.category == 'Writing' and page.cover and page.cover != '' %}

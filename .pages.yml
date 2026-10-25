@@ -33,7 +33,30 @@ content:
         type: select
         required: true
         options:
-          values: [Writing, Photography, Visual Art, Neighbors]
+          values: [Writing, Visual Art, Wavelengths, Photography, Neighbors]
+      # Legacy Photography items stay valid; new photo/audio/video posts use Wavelengths.
+      - name: audio_file
+        label: Audio composition (MP3 recommended)
+        type: file
+        options:
+          categories: [audio]
+        description: Optional for Wavelengths. Upload an MP3 or M4A; new entries will get an audio player. Best for short, compressed audio. Leave blank for photographs and videos.
+      - name: video_file
+        label: Performance video file (small MP4 only)
+        type: file
+        options:
+          categories: [video]
+        description: Optional. Small MP4 works, but for large videos use a YouTube/Vimeo URL below instead, because GitHub Pages limits file sizes.
+      - name: video_url
+        label: Performance video link (YouTube or Vimeo)
+        type: string
+        description: Optional. Paste a public or unlisted YouTube or Vimeo watch URL. Best for larger videos; do not also upload a video file for the same piece.
+      - name: captions_file
+        label: Video captions (optional WebVTT)
+        type: file
+        options:
+          extensions: [vtt]
+        description: Optional .vtt captions for a directly uploaded video. YouTube/Vimeo captions are configured on their platforms.
       - name: published
         label: Published
         type: boolean

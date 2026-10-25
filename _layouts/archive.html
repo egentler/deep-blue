@@ -2,6 +2,19 @@
 layout: default
 ---
 {% assign entries = site.posts | where: 'category', page.category_filter %}
+{% assign is_wavelengths_archive = false %}
+{% assign has_av_entries = false %}
+{% if page.category_filter == 'Wavelengths' %}
+  {% assign is_wavelengths_archive = true %}
+  {% assign old_photo_entries = site.posts | where: 'category', 'Photography' %}
+  {% assign wave_entries = site.posts | where: 'category', 'Wavelengths' %}
+  {% assign entries = old_photo_entries | concat: wave_entries | sort: 'date' | reverse %}
+  {% for item in entries %}
+    {% if item.audio_file != blank or item.video_file != blank or item.video_url != blank %}
+      {% assign has_av_entries = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 <link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261019-photo-mobile-flow-1">
 <main class="gallery-archive">
   <div class="archive-intro">
@@ -13,7 +26,14 @@ layout: default
   </div>
 
   {% if entries.size > 0 %}
-    {% if page.category_filter == 'Writing' %}
+    {% if is_wavelengths_archive and has_av_entries %}
+      <div class="db-wavelengths-mixed-grid">
+      {% for post in entries %}
+        {% include gallery-tile.html post=post group='wavelengths' inline_player=true %}
+      {% endfor %}
+      </div>
+      <script defer src="{{ '/assets/js/wavelengths-media.js' | relative_url }}"></script>
+    {% elsif page.category_filter == 'Writing' %}
       {% comment %}
         Writing has its own 14-post rhythm (text remains comfortably readable):
         0-3: standard two-column; 4-6: one highlighted piece + two alongside;
@@ -81,9 +101,9 @@ layout: default
         All images use the existing gallery-tile include to preserve covers,
         series indicators, opening behavior, and back-button handling.
       {% endcomment %}
-      <div class="db-editorial-archive{% if page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}">
+      <div class="db-editorial-archive{% if is_wavelengths_archive or page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}">
         {% for post in entries %}
-          {% if page.category_filter == 'Photography' %}
+          {% if is_wavelengths_archive or page.category_filter == 'Photography' %}
             {% assign pos = forloop.index0 | modulo: 16 %}
             {% if pos < 3 %}
               {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 2 %}

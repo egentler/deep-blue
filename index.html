@@ -21,7 +21,7 @@ layout: default
    small squares. Using equal 1fr tracks with a 2x2 span made both right-hand
    columns extend well below the big square whenever captions were present. */
 .home-art-square-gallery { grid-template-columns: minmax(0, 2.26fr) minmax(0, 1fr); }
-.home-photo-square-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 2.305fr); }
+.home-photo-square-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 2.25fr); }
 
 /* Square image STAGES only; credits remain below the art.
    Do not crop original images; user-uploaded square thumbnails fit exactly. */
@@ -77,18 +77,6 @@ layout: default
     grid-row: auto;
   }
 }
-
-/* Homepage-only spacing refinements: shorten the gap from each “View all”
-   link to the section divider and from the divider to the next heading.
-   The image mosaics, Writing cards and gallery archives are untouched. */
-.gallery-home .all-category-link { margin-top: 14px; }
-.gallery-home .curated-section { padding-bottom: 28px; }
-.gallery-home .curated-section:not(:first-child) { padding-top: 24px; }
-@media (max-width: 640px) {
-  .gallery-home .all-category-link { margin-top: 12px; }
-  .gallery-home .curated-section { padding-bottom: 26px; }
-  .gallery-home .curated-section:not(:first-child) { padding-top: 22px; }
-}
 </style>
 <main class="gallery-home" id="latest">
   {% assign art_entries = site.posts | where: 'category', 'Visual Art' %}
@@ -122,16 +110,19 @@ layout: default
     {% else %}<p class="empty-gallery">New writing will appear here as soon as it is published.</p>{% endif %}
   </section>
 
-  {% assign photo_entries = site.posts | where: 'category', 'Photography' %}
-  <section class="curated-section" id="photography" aria-labelledby="photography-heading">
-    <div class="gallery-section-heading"><div><div class="eyebrow">03 / Through the lens</div><h2 id="photography-heading"><a href="{{ '/photography/' | relative_url }}">Photography<span class="accent-dot">.</span></a></h2></div></div>
+  {% assign old_photo_entries = site.posts | where: 'category', 'Photography' %}
+  {% assign new_wavelength_entries = site.posts | where: 'category', 'Wavelengths' %}
+  {% assign photo_entries = old_photo_entries | concat: new_wavelength_entries | sort: 'date' | reverse %}
+  <section class="curated-section" id="wavelengths" aria-labelledby="wavelengths-heading">
+    <span id="photography" class="db-legacy-anchor" aria-hidden="true"></span>
+    <div class="gallery-section-heading"><div><div class="eyebrow">03 / Photography &amp; music</div><h2 id="wavelengths-heading"><a href="{{ '/wavelengths/' | relative_url }}">Wavelengths<span class="accent-dot">.</span></a></h2></div></div>
     {% if photo_entries.size > 0 %}
     <div class="featured-gallery home-photo-square-gallery">
       {% for post in photo_entries limit:5 %}
       {% include gallery-tile.html post=post group='photography' lead=forloop.first %}
       {% endfor %}
     </div>
-    <a class="all-category-link" href="{{ '/photography/' | relative_url }}">View all photography <span aria-hidden="true">→</span></a>
-    {% else %}<p class="empty-gallery">Photographs will appear here as soon as they are published.</p>{% endif %}
+    <a class="all-category-link" href="{{ '/wavelengths/' | relative_url }}">Explore all Wavelengths <span aria-hidden="true">→</span></a>
+    {% else %}<p class="empty-gallery">Photography, music, and performance videos will appear here as soon as they are published.</p>{% endif %}
   </section>
 </main>

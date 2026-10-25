@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/gallery.css' | relative_url }}?v=20261016-clean-gallery-v1">
+<link rel="stylesheet" href="{{ '/assets/css/wavelengths.css' | relative_url }}?v=20261025-waves-1">
 <style>
 .sitebar .nav a:last-child{border:0;padding:0;border-radius:0;opacity:.76}
 .footer .footer-message{font-size:14px;line-height:1.55;letter-spacing:.01em}
@@ -47,10 +48,12 @@
   .sitebar .brand-mini--icon{width:42px;height:42px;flex-basis:42px}
   .hero-inner--single{padding-top:27px}
 }
+.sitebar .nav{gap:clamp(14px,2.1vw,38px)}
+@media(max-width:760px){.sitebar .nav{gap:clamp(8px,2vw,14px)}}
 </style>
 </head><body>
 <header class="hero{% if page.layout == 'post' %} hero--short{% endif %}" id="top">
-  <div class="sitebar"><a class="brand-mini brand-mini--icon" href="{{ '/' | relative_url }}" aria-label="Deep Blue home"><img src="{{ '/assets/images/deep-blue-wave-nav.png' | relative_url }}" alt="" width="48" height="48"></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#photography">Photography</a></nav></div>
+  <div class="sitebar"><a class="brand-mini brand-mini--icon" href="{{ '/' | relative_url }}" aria-label="Deep Blue home"><img src="{{ '/assets/images/deep-blue-wave-nav.png' | relative_url }}" alt="" width="48" height="48"></a><nav class="nav" aria-label="Primary"><a href="{{ '/' | relative_url }}#visual-art">Art</a><a href="{{ '/' | relative_url }}#writing">Writing</a><a href="{{ '/' | relative_url }}#wavelengths">Wavelengths</a></nav></div>
 {% if page.layout != 'post' %}
   <div class="hero-inner hero-inner--single"><div><div class="eyebrow">A student arts &amp; literary journal</div><h1 class="hero-title"><a href="{{ '/' | relative_url }}" aria-label="Go to Deep Blue homepage">deep<br><em>blue.</em></a></h1><div class="hero-rule"></div><p class="hero-copy">{% assign tagline_text = site.data.site.tagline | default: '' | escape %}{{ tagline_text | replace: '. Deep Blue explores', '.<br class="hero-copy-desktop-break"> Deep Blue explores' | replace: 'catch and release', '<span class="hero-copy-keep-together">catch and release</span>' }}</p></div></div>
 {% else %}<div class="hero-inner"><div class="eyebrow">The Deep Blue collection</div><div class="hero-title"><a href="{{ '/' | relative_url }}" aria-label="Go to Deep Blue homepage">deep <em>blue.</em></a></div></div>{% endif %}
