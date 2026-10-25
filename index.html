@@ -43,7 +43,7 @@ layout: default
 .home-art-square-gallery > .gallery-tile:nth-of-type(2) { grid-column: 2; grid-row: 1; }
 .home-art-square-gallery > .gallery-tile:nth-of-type(3) { grid-column: 2; grid-row: 2; }
 
-/* Latest photograph is the large tile at the right; the next four form a 2×2. */
+/* Featured tile on the right is always a photograph; the four other latest works form a 2×2. */
 .home-photo-square-gallery > .gallery-tile--lead {
   grid-column: 3;
   grid-row: 1 / span 2;
@@ -52,6 +52,13 @@ layout: default
 .home-photo-square-gallery > .gallery-tile:nth-of-type(3) { grid-column: 2; grid-row: 1; }
 .home-photo-square-gallery > .gallery-tile:nth-of-type(4) { grid-column: 1; grid-row: 2; }
 .home-photo-square-gallery > .gallery-tile:nth-of-type(5) { grid-column: 2; grid-row: 2; }
+
+/* If no photograph is available, leave music/video in equal-sized cards. */
+.home-photo-square-gallery--no-feature { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.home-photo-square-gallery--no-feature > .gallery-tile:nth-of-type(n) {
+  grid-column: auto;
+  grid-row: auto;
+}
 
 /* On phones put the featured square first, then show the smaller squares in pairs. */
 @media (max-width: 760px) {
@@ -65,6 +72,7 @@ layout: default
     grid-column: auto;
     grid-row: auto;
   }
+  .home-photo-square-gallery--no-feature { grid-template-columns: repeat(2, minmax(0,1fr)); }
   /* Reset desktop position selectors, whose :nth-of-type specificity is higher. */
   .home-art-square-gallery > .gallery-tile:nth-of-type(n+2),
   .home-photo-square-gallery > .gallery-tile:nth-of-type(n+2) {
@@ -117,9 +125,36 @@ layout: default
     <span id="photography" class="db-legacy-anchor" aria-hidden="true"></span>
     <div class="gallery-section-heading"><div><div class="eyebrow">03 / Photography &amp; music</div><h2 id="wavelengths-heading"><a href="{{ '/wavelengths/' | relative_url }}">Wavelengths<span class="accent-dot">.</span></a></h2></div></div>
     {% if photo_entries.size > 0 %}
-    <div class="featured-gallery home-photo-square-gallery">
-      {% for post in photo_entries limit:5 %}
-      {% include gallery-tile.html post=post group='photography' lead=forloop.first %}
+    {% comment %}
+      Photo-first homepage: reserve the large slot for the newest real photograph,
+      regardless of the music/video publication dates. Then fill the four small
+      slots with the newest remaining works in date order. Do not change posts.
+    {% endcomment %}
+    {% assign featured_photo = nil %}
+    {% for entry in photo_entries %}
+      {% assign entry_audio = entry.audio_file | default: '' | strip %}
+      {% assign entry_video = entry.video_file | default: '' | strip %}
+      {% assign entry_video_url = entry.video_url | default: '' | strip %}
+      {% if entry_audio == '' and entry_video == '' and entry_video_url == '' and entry.cover != blank %}
+        {% assign featured_photo = entry %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    <div class="featured-gallery home-photo-square-gallery{% if featured_photo == nil %} home-photo-square-gallery--no-feature{% endif %}">
+      {% if featured_photo %}
+        {% include gallery-tile.html post=featured_photo group='photography' lead=true %}
+      {% endif %}
+      {% assign small_count = 0 %}
+      {% for post in photo_entries %}
+        {% if featured_photo and post.id == featured_photo.id %}
+          {% continue %}
+        {% endif %}
+        {% if small_count < 4 %}
+          {% include gallery-tile.html post=post group='photography' %}
+          {% assign small_count = small_count | plus: 1 %}
+        {% else %}
+          {% break %}
+        {% endif %}
       {% endfor %}
     </div>
     <a class="all-category-link" href="{{ '/wavelengths/' | relative_url }}">Explore all Wavelengths <span aria-hidden="true">→</span></a>
