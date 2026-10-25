@@ -1,6 +1,6 @@
 ---
 title: Withdrawals
-date: 2026-10-25
+date: 2026-10-23
 category: Wavelengths
 audio_file: /assets/uploads/Withdrawals.mp3
 published: false
