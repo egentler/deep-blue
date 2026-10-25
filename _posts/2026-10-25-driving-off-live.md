@@ -1,5 +1,5 @@
 ---
-title: Driving Off (Live)
+title: Driving Off
 date: 2026-10-24
 category: Wavelengths
 audio_file: /assets/uploads/Driving Off.mp3
