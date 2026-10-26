@@ -1,6 +1,6 @@
 ---
 title: Crazy 'Bout You
-date: 2026-10-22
+date: 2026-10-21
 category: Wavelengths
 audio_file: /assets/uploads/Crazy 'Bout You.mp3
 published: true
