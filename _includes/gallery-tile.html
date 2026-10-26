@@ -11,6 +11,7 @@
 {% assign db_video_file = piece.video_file | default: '' | strip %}
 {% assign db_video_url = piece.video_url | default: '' | strip %}
 {% assign db_audio_file = piece.audio_file | default: '' | strip %}
+{% assign db_audio_thumb = '/assets/images/blue_audio_waveform_logo.png' %}
 {% assign is_media = false %}
 {% assign is_video = false %}
 {% assign is_audio = false %}
@@ -19,8 +20,10 @@
 {% if is_media %}
 <figure class="gallery-tile gallery-tile--media{% if is_audio %} gallery-tile--audio{% else %} gallery-tile--video{% endif %}{% if include.lead %} gallery-tile--lead{% endif %}">
   <a class="gallery-media-link" href="{{ piece.url | relative_url }}" aria-label="{% if is_audio %}Listen to{% else %}Watch{% endif %} {{ piece.title | escape }}">
-    <span class="gallery-image-stage gallery-media-stage{% if piece.cover != blank %} gallery-media-stage--has-cover{% endif %}">
-      {% if piece.cover and piece.cover != '' %}
+    <span class="gallery-image-stage gallery-media-stage{% if is_audio or piece.cover != blank %} gallery-media-stage--has-cover{% endif %}">
+      {% if is_audio %}
+      <img src="{{ db_audio_thumb | relative_url }}" alt="" loading="lazy">
+      {% elsif piece.cover and piece.cover != '' %}
       <img src="{{ piece.cover | relative_url }}" alt="" loading="lazy">
       {% else %}
       <span class="db-media-placeholder" aria-hidden="true">
