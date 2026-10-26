@@ -3,52 +3,18 @@ layout: default
 ---
 {% assign entries = site.posts | where: 'category', page.category_filter %}
 {% assign is_wavelengths_archive = false %}
-{% assign has_av_entries = false %}
 {% if page.category_filter == 'Wavelengths' %}
   {% assign is_wavelengths_archive = true %}
   {% assign old_photo_entries = site.posts | where: 'category', 'Photography' %}
   {% assign wave_entries = site.posts | where: 'category', 'Wavelengths' %}
   {% assign entries = old_photo_entries | concat: wave_entries | sort: 'date' | reverse %}
-  {% for item in entries %}
-    {% assign db_item_audio = item.audio_file | default: '' | strip %}
-    {% assign db_item_video = item.video_file | default: '' | strip %}
-    {% assign db_item_video_url = item.video_url | default: '' | strip %}
-    {% if db_item_audio != '' or db_item_video != '' or db_item_video_url != '' %}
-      {% assign has_av_entries = true %}
-    {% endif %}
-  {% endfor %}
 {% endif %}
 <link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261019-photo-mobile-flow-1">
 <style>
-/* Audio thumbnails already link to their listening pages. Do not render
-   inline players or redundant action links in the Wavelengths gallery. */
-.db-wavelengths-mixed-editorial .gallery-tile--audio .db-media-action { display:none; }
-/* Wavelengths: featured positions are always real photographs. */
-.db-wavelengths-mixed-editorial { display:grid; gap:40px; }
-.db-wavelengths-photo-band {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:28px 18px;
-  align-items:start;
-}
-.db-wavelengths-photo-band > .gallery-tile { min-width:0; }
-.db-wavelengths-photo-band .gallery-image-stage { aspect-ratio:1/1; min-height:0; }
-.db-wavelengths-photo-band > .gallery-tile--lead { grid-column:1/span 2; grid-row:1/span 2; }
-.db-wavelengths-photo-band > .gallery-tile:nth-of-type(2) { grid-column:3;grid-row:1; }
-.db-wavelengths-photo-band > .gallery-tile:nth-of-type(3) { grid-column:4;grid-row:1; }
-.db-wavelengths-photo-band > .gallery-tile:nth-of-type(4) { grid-column:3;grid-row:2; }
-.db-wavelengths-photo-band > .gallery-tile:nth-of-type(5) { grid-column:4;grid-row:2; }
-@media(max-width:960px) {
-  .db-wavelengths-photo-band { grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 15px; }
-  .db-wavelengths-photo-band > .gallery-tile:nth-of-type(n) { grid-column:auto;grid-row:auto; }
-  .db-wavelengths-photo-band > .gallery-tile.gallery-tile--lead { grid-column:1/-1;grid-row:auto; }
-}
-@media(max-width:640px) {
-  .db-wavelengths-mixed-editorial { gap:30px; }
-  .db-wavelengths-photo-band { grid-template-columns:minmax(0,1fr);gap:27px; }
-  .db-wavelengths-photo-band > .gallery-tile.gallery-tile--lead { grid-column:1; }
-  .db-wavelengths-photo-band > .gallery-tile--media .gallery-image-stage { aspect-ratio:16/9; }
-}
+/* Wavelengths uses the same regular editorial bands as Visual Art.
+   Opening a music/video tile leads to the dedicated player page;
+   redundant inline actions should not change card heights. */
+.db-wavelengths-archive .gallery-tile--media .db-media-action { display: none; }
 </style>
 <main class="gallery-archive">
   <div class="archive-intro">
@@ -60,52 +26,7 @@ layout: default
   </div>
 
   {% if entries.size > 0 %}
-    {% if is_wavelengths_archive and has_av_entries %}
-      {% comment %}
-        Wavelengths mixed-media rhythm: groups of five posts in reverse date
-        order. In a complete group, promote its newest PHOTO to the large
-        feature slot; all music/videos are small. Partial final groups and
-        all-audio/video groups use equal-size cards without a feature.
-        Within each group, nonfeatured works remain in reverse date order.
-      {% endcomment %}
-      <div class="db-wavelengths-mixed-editorial">
-        {% for entry in entries %}
-          {% assign start_of_band = forloop.index0 | modulo: 5 %}
-          {% if start_of_band == 0 %}
-            {% assign band = entries | slice: forloop.index0, 5 %}
-            {% assign band_photo = nil %}
-            {% if band.size == 5 %}
-              {% for candidate in band %}
-                {% assign candidate_audio = candidate.audio_file | default: '' | strip %}
-                {% assign candidate_video = candidate.video_file | default: '' | strip %}
-                {% assign candidate_video_url = candidate.video_url | default: '' | strip %}
-                {% if candidate_audio == '' and candidate_video == '' and candidate_video_url == '' and candidate.cover != blank %}
-                  {% assign band_photo = candidate %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-            {% if band_photo %}
-              <div class="db-wavelengths-photo-band">
-                {% include gallery-tile.html post=band_photo group='wavelengths' lead=true %}
-                {% for post in band %}
-                  {% if post.id != band_photo.id %}
-                    {% include gallery-tile.html post=post group='wavelengths' %}
-                  {% endif %}
-                {% endfor %}
-              </div>
-            {% else %}
-              <div class="db-wavelengths-mixed-grid">
-                {% for post in band %}
-                  {% include gallery-tile.html post=post group='wavelengths' %}
-                {% endfor %}
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </div>
-      <script defer src="{{ '/assets/js/wavelengths-media.js' | relative_url }}"></script>
-    {% elsif page.category_filter == 'Writing' %}
+    {% if page.category_filter == 'Writing' %}
       {% comment %}
         Writing has its own 14-post rhythm (text remains comfortably readable):
         0-3: standard two-column; 4-6: one highlighted piece + two alongside;
@@ -163,19 +84,19 @@ layout: default
 
     {% else %}
       {% comment %}
-        Equal-weight photography, one band per desktop row: 3 / 6 / 2 / 5,
-        repeating every 16 pieces (newest first). On smaller screens,
-        grids reduce to 1-2 columns so artwork stays readable.
-
-        Visual Art stays unchanged: 6 standard (3 across), 10 compact (5),
-        6 standard (3), 12 dense (6). Writing uses its separate text layout.
+        Visual Art and Wavelengths share the SAME 34-post grid cycle:
+        6 standard (3 across), 10 compact (5 across), 6 standard,
+        and 12 dense (6 across). Within each band all tiles are equal sized.
+        Music and video thumbnails are ordinary tiles, never featured large.
+        Legacy Photography page, if used, keeps its original grid cycle.
+        Writing retains its separate layout.
 
         All images use the existing gallery-tile include to preserve covers,
         series indicators, opening behavior, and back-button handling.
       {% endcomment %}
-      <div class="db-editorial-archive{% if is_wavelengths_archive or page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}">
+      <div class="db-editorial-archive{% if page.category_filter == 'Photography' %} db-photo-archive{% else %} db-art-archive{% endif %}{% if is_wavelengths_archive %} db-wavelengths-archive{% endif %}">
         {% for post in entries %}
-          {% if is_wavelengths_archive or page.category_filter == 'Photography' %}
+          {% if page.category_filter == 'Photography' %}
             {% assign pos = forloop.index0 | modulo: 16 %}
             {% if pos < 3 %}
               {% assign segment = 'standard' %}{% assign seg_start = 0 %}{% assign seg_end = 2 %}
