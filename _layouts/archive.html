@@ -19,6 +19,37 @@ layout: default
   {% endfor %}
 {% endif %}
 <link rel="stylesheet" href="{{ '/assets/css/archive-variation.css' | relative_url }}?v=20261019-photo-mobile-flow-1">
+<style>
+/* Audio thumbnails already link to their listening pages. Do not render
+   inline players or redundant action links in the Wavelengths gallery. */
+.db-wavelengths-mixed-editorial .gallery-tile--audio .db-media-action { display:none; }
+/* Wavelengths: featured positions are always real photographs. */
+.db-wavelengths-mixed-editorial { display:grid; gap:40px; }
+.db-wavelengths-photo-band {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:28px 18px;
+  align-items:start;
+}
+.db-wavelengths-photo-band > .gallery-tile { min-width:0; }
+.db-wavelengths-photo-band .gallery-image-stage { aspect-ratio:1/1; min-height:0; }
+.db-wavelengths-photo-band > .gallery-tile--lead { grid-column:1/span 2; grid-row:1/span 2; }
+.db-wavelengths-photo-band > .gallery-tile:nth-of-type(2) { grid-column:3;grid-row:1; }
+.db-wavelengths-photo-band > .gallery-tile:nth-of-type(3) { grid-column:4;grid-row:1; }
+.db-wavelengths-photo-band > .gallery-tile:nth-of-type(4) { grid-column:3;grid-row:2; }
+.db-wavelengths-photo-band > .gallery-tile:nth-of-type(5) { grid-column:4;grid-row:2; }
+@media(max-width:960px) {
+  .db-wavelengths-photo-band { grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 15px; }
+  .db-wavelengths-photo-band > .gallery-tile:nth-of-type(n) { grid-column:auto;grid-row:auto; }
+  .db-wavelengths-photo-band > .gallery-tile.gallery-tile--lead { grid-column:1/-1;grid-row:auto; }
+}
+@media(max-width:640px) {
+  .db-wavelengths-mixed-editorial { gap:30px; }
+  .db-wavelengths-photo-band { grid-template-columns:minmax(0,1fr);gap:27px; }
+  .db-wavelengths-photo-band > .gallery-tile.gallery-tile--lead { grid-column:1; }
+  .db-wavelengths-photo-band > .gallery-tile--media .gallery-image-stage { aspect-ratio:16/9; }
+}
+</style>
 <main class="gallery-archive">
   <div class="archive-intro">
     <a href="{{ '/' | relative_url }}" class="archive-return">← Back to Deep Blue</a>
@@ -30,10 +61,48 @@ layout: default
 
   {% if entries.size > 0 %}
     {% if is_wavelengths_archive and has_av_entries %}
-      <div class="db-wavelengths-mixed-grid">
-      {% for post in entries %}
-        {% include gallery-tile.html post=post group='wavelengths' inline_player=true %}
-      {% endfor %}
+      {% comment %}
+        Wavelengths mixed-media rhythm: groups of five posts in reverse date
+        order. In a complete group, promote its newest PHOTO to the large
+        feature slot; all music/videos are small. Partial final groups and
+        all-audio/video groups use equal-size cards without a feature.
+        Within each group, nonfeatured works remain in reverse date order.
+      {% endcomment %}
+      <div class="db-wavelengths-mixed-editorial">
+        {% for entry in entries %}
+          {% assign start_of_band = forloop.index0 | modulo: 5 %}
+          {% if start_of_band == 0 %}
+            {% assign band = entries | slice: forloop.index0, 5 %}
+            {% assign band_photo = nil %}
+            {% if band.size == 5 %}
+              {% for candidate in band %}
+                {% assign candidate_audio = candidate.audio_file | default: '' | strip %}
+                {% assign candidate_video = candidate.video_file | default: '' | strip %}
+                {% assign candidate_video_url = candidate.video_url | default: '' | strip %}
+                {% if candidate_audio == '' and candidate_video == '' and candidate_video_url == '' and candidate.cover != blank %}
+                  {% assign band_photo = candidate %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if band_photo %}
+              <div class="db-wavelengths-photo-band">
+                {% include gallery-tile.html post=band_photo group='wavelengths' lead=true %}
+                {% for post in band %}
+                  {% if post.id != band_photo.id %}
+                    {% include gallery-tile.html post=post group='wavelengths' %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="db-wavelengths-mixed-grid">
+                {% for post in band %}
+                  {% include gallery-tile.html post=post group='wavelengths' %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
       </div>
       <script defer src="{{ '/assets/js/wavelengths-media.js' | relative_url }}"></script>
     {% elsif page.category_filter == 'Writing' %}
