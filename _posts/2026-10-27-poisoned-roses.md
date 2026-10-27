@@ -4,6 +4,7 @@ date: 2026-08-06
 category: Writing
 published: true
 author: Samuel Knight
+summary: "Warning: This poem may not be suitable for younger audiences. "
 preview: |-
   A world of flowers.
   A garden of women.
@@ -21,7 +22,7 @@ Harmonious world,
 Harmonious garden.
 Thriving together,
 Pretty forever.
-  
+
 Gift me a rose, 
 I'll treat her with care.
 Love her unconditionally,
