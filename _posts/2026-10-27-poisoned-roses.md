@@ -23,7 +23,7 @@ Harmonious garden.
 Thriving together,
 Pretty forever.
 
-Gift me a rose, 
+Gift me a rose,
 I'll treat her with care.
 Love her unconditionally,
 She's mine to keep.
