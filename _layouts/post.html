@@ -119,6 +119,13 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
 {% if db_post_audio_file != '' %}{% assign db_post_has_audio = true %}{% endif %}
 {% if page.category == 'Writing' %}
 <style>
+/* Ordinary writing and poetry: single-spaced lines, one line between paragraphs.
+   Apply only to Writing entries; series/comic readers use their own layout.
+   Line breaks within a paragraph remain close together, while new paragraphs
+   receive one line-height of breathing room. */
+.article-content { line-height: 1.25; }
+.article-content p { margin: 0 0 1.25em; }
+.article-content p:last-child { margin-bottom: 0; }
 /* Editorial illustration: only ordinary Writing pieces, not comic series. */
 .article-content--illustrated { display: flow-root; }
 .article-inline-illustration {
