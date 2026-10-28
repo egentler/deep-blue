@@ -1,8 +1,32 @@
 {% assign piece = include.post %}
+{% comment %}
+  Count only photos that the visitor actually sees, not uploaded assets.
+  A cropped cover plus ONE original with show_cover_in_series=false is a
+  single photograph: the cover is only a thumbnail, not a series page.
+{% endcomment %}
+{% assign additional_count = piece.series_images.size | default: 0 %}
+{% assign series_display_count = additional_count %}
+{% if piece.show_cover_in_series != false and piece.cover and piece.cover != '' %}
+  {% assign series_display_count = series_display_count | plus: 1 %}
+{% endif %}
 {% assign is_series = false %}
-{% if piece.series_images and piece.series_images.size > 0 %}{% assign is_series = true %}{% endif %}
-{% assign series_display_count = piece.series_images.size | default: 0 %}
-{% if piece.show_cover_in_series != false and piece.cover and piece.cover != '' %}{% assign series_display_count = series_display_count | plus: 1 %}{% endif %}
+{% if series_display_count > 1 %}{% assign is_series = true %}{% endif %}
+
+{% comment %}
+  For a single original behind a cropped cover, keep the cropped thumbnail
+  in the grid, but open the original in the full-resolution image viewer.
+{% endcomment %}
+{% assign full_image = piece.cover %}
+{% assign full_image_credit = piece.author | default: 'Student contributor' %}
+{% if piece.show_cover_in_series == false and additional_count == 1 %}
+  {% assign original_image = piece.series_images | first %}
+  {% if original_image.image and original_image.image != '' %}
+    {% assign full_image = original_image.image %}
+  {% endif %}
+  {% if original_image.artist and original_image.artist != '' %}
+    {% assign full_image_credit = original_image.artist %}
+  {% endif %}
+{% endif %}
 {% comment %}
   Pages CMS leaves unused audio/video fields unset on existing photographs.
   Normalize unset fields to empty strings before making media-type decisions;
@@ -51,7 +75,7 @@
       <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url }}" alt="{{ piece.title | escape }} — series cover" loading="lazy"></span>
     </button>
     {% else %}
-    <button type="button" class="gallery-image-button" data-open-image data-group="{{ include.group }}" data-src="{{ piece.cover | relative_url }}" data-title="{{ piece.title | escape }}" data-credit="{{ piece.author | default: 'Student contributor' | escape }}" aria-label="View full-size image: {{ piece.title | escape }}">
+    <button type="button" class="gallery-image-button" data-open-image data-group="{{ include.group }}" data-src="{{ full_image | relative_url | escape }}" data-title="{{ piece.title | escape }}" data-credit="{{ full_image_credit | escape }}" aria-label="View full-size image: {{ piece.title | escape }}">
       <span class="gallery-image-stage"><img src="{{ piece.cover | relative_url }}" alt="{{ piece.title | escape }}" loading="lazy"></span>
     </button>
     {% endif %}
