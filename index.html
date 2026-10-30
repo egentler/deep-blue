@@ -90,6 +90,15 @@ layout: default
     grid-row: auto;
   }
 }
+
+/* 30 October 2026: Restore compact homepage section transitions on desktop.
+   Keep View all near its gallery and the next section label near the divider.
+   This is intentionally scoped to the homepage and does not change mobile. */
+@media (min-width: 861px) {
+  .gallery-home .curated-section { padding-bottom: 20px; }
+  .gallery-home .curated-section:not(:first-child) { padding-top: 22px; }
+  .gallery-home .curated-section > .all-category-link { margin-top: 13px; }
+}
 </style>
 <main class="gallery-home" id="latest">
   {% assign art_entries = site.posts | where: 'category', 'Visual Art' %}
