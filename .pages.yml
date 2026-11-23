@@ -9,7 +9,7 @@ content:
     type: collection
     path: _posts
     format: yaml-frontmatter
-    filename: "{year}-{month}-{day}-{primary}.md"
+    filename: "{year}-{month}-{day}-{primary}-{entry_uuid}.md"
     view:
       primary: title
       fields: [title, date, category, published, author]
@@ -22,6 +22,13 @@ content:
         label: Title of piece
         type: string
         required: true
+      - name: entry_uuid
+        label: Automatic post ID (for unique URLs)
+        type: uuid
+        options:
+          editable: false
+          generate: false
+        description: Generated automatically for new posts. No action needed; keeps same-title pieces at distinct website addresses.
       - name: date
         label: Publication date
         type: date
