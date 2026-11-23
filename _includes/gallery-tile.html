@@ -35,12 +35,13 @@
 {% assign db_video_file = piece.video_file | default: '' | strip %}
 {% assign db_video_url = piece.video_url | default: '' | strip %}
 {% assign db_audio_file = piece.audio_file | default: '' | strip %}
+{% assign db_audio_track_count = piece.audio_tracks.size | default: 0 %}
 {% assign db_audio_thumb = '/assets/images/blue_audio_waveform_logo.png' %}
 {% assign is_media = false %}
 {% assign is_video = false %}
 {% assign is_audio = false %}
 {% if db_video_file != '' or db_video_url != '' %}{% assign is_video = true %}{% assign is_media = true %}
-{% elsif db_audio_file != '' %}{% assign is_audio = true %}{% assign is_media = true %}{% endif %}
+{% elsif db_audio_file != '' or db_audio_track_count > 0 %}{% assign is_audio = true %}{% assign is_media = true %}{% endif %}
 {% if is_media %}
 <figure class="gallery-tile gallery-tile--media{% if is_audio %} gallery-tile--audio{% else %} gallery-tile--video{% endif %}{% if include.lead %} gallery-tile--lead{% endif %}">
   <a class="gallery-media-link" href="{{ piece.url | relative_url }}" aria-label="{% if is_audio %}Listen to{% else %}Watch{% endif %} {{ piece.title | escape }}">
@@ -54,12 +55,13 @@
         {% if is_video %}<span class="db-performance-glyph">▶</span>{% else %}<span class="db-sound-glyph"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>{% endif %}
       </span>
       {% endif %}
-      <span class="db-media-type-badge">{% if is_audio %}♫ Audio{% else %}▶ Video{% endif %}</span>
+      <span class="db-media-type-badge">{% if is_audio %}{% if db_audio_track_count > 1 %}♫ {{ db_audio_track_count }} tracks{% else %}♫ Audio{% endif %}{% else %}▶ Video{% endif %}</span>
     </span>
   </a>
   <figcaption class="gallery-caption db-media-caption">
     <strong><a href="{{ piece.url | relative_url }}">{{ piece.title | escape }}</a></strong>
     <span>{{ piece.author | default: 'Student contributor' | escape }}{% if piece.medium %} · {{ piece.medium | escape }}{% endif %}</span>
+    {% if is_audio and db_audio_track_count > 1 %}<span class="db-track-set-meta">Audio collection · {{ db_audio_track_count }} tracks</span>{% endif %}
     {% if is_audio and include.inline_player and db_audio_file != '' %}
     <audio class="db-inline-audio" controls preload="none" aria-label="Listen to {{ piece.title | escape }}"><source src="{{ db_audio_file | relative_url }}">Your browser cannot play this audio. <a href="{{ db_audio_file | relative_url }}">Get the audio file</a>.</audio>
     {% else %}

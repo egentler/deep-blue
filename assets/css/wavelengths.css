@@ -36,3 +36,29 @@
 .db-external-video p a { color:inherit;text-decoration:underline;text-underline-offset:4px; }
 @media(max-width:960px){.db-wavelengths-mixed-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 15px}}
 @media(max-width:640px){.db-wavelengths-mixed-grid{grid-template-columns:minmax(0,1fr);gap:29px}.db-post-audio{padding:21px 16px}.gallery-media-stage .db-media-type-badge{left:10px;bottom:10px}}
+
+/* November 2026: multi-track music collections on individual post pages.
+   The gallery thumbnail continues to open this page; never show gray inline
+   audio bars in the gallery.  Native controls work on desktop and phones. */
+.db-track-collection { margin: 34px 0 42px; padding: 29px 30px 12px; background: #e6eeea; border: 1px solid #ccdcd8; border-radius: 3px; }
+.db-track-collection-head { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; padding-bottom: 15px; border-bottom: 1px solid #c5d5d1; }
+.db-track-collection-head h2 { font: normal 38px/1 'Instrument Serif', Georgia, serif; color: #10303a; margin: 0; }
+.db-track-collection-head span { font: 700 10px/1.6 'DM Sans', Arial, sans-serif; text-transform: uppercase; letter-spacing: .15em; color: #547579; white-space: nowrap; }
+.db-track-list { list-style: none; padding: 0; margin: 0; }
+.db-track-item { padding: 22px 0 25px; border-bottom: 1px solid #c5d5d1; }
+.db-track-item:last-child { border-bottom: 0; padding-bottom: 16px; }
+.db-track-heading { display: flex; align-items: baseline; gap: 16px; margin-bottom: 15px; }
+.db-track-index { font: 700 11px/1.3 'DM Sans', Arial, sans-serif; letter-spacing: .14em; color: #68898b; min-width: 22px; }
+.db-track-details { flex: 1; min-width: 0; }
+.db-track-details h3 { color: #173640; font: normal 28px/1.1 'Instrument Serif', Georgia, serif; margin: 0; overflow-wrap: anywhere; }
+.db-track-artist { margin: 5px 0 0; font: 500 12px/1.45 'DM Sans', Arial, sans-serif; color: #607b7b; }
+.db-track-note { margin: 8px 0 0; font: normal 13px/1.5 'DM Sans', Arial, sans-serif; color: #4e6e70; }
+.db-track-item audio { display: block; width: 100%; min-width: 0; height: 48px; }
+.db-media-caption .db-track-set-meta { font-size: 11px; color: #648384; letter-spacing: .01em; }
+@media (max-width: 640px) {
+  .db-track-collection { padding: 22px 16px 8px; margin: 26px 0 34px; }
+  .db-track-collection-head h2 { font-size: 34px; }
+  .db-track-item { padding: 18px 0 22px; }
+  .db-track-details h3 { font-size: 26px; }
+  .db-track-heading { gap: 11px; }
+}

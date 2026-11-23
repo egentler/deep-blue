@@ -40,6 +40,32 @@ content:
         options:
           categories: [audio]
         description: Optional for Wavelengths. Upload an MP3 or M4A; new entries will get an audio player. Best for short, compressed audio. Leave blank for photographs and videos.
+      - name: audio_tracks
+        label: Song collection / track list (Wavelengths or Neighbors)
+        type: object
+        description: For a collection of songs, add one track at a time and select an MP3 already in assets/uploads. Drag to reorder. Leave the single Audio composition field empty for collections. One post becomes one listening page with a player for every track.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: Song title
+            type: string
+            required: true
+          - name: file
+            label: MP3 audio file
+            type: file
+            required: true
+            options:
+              categories: [audio]
+              extensions: [mp3, m4a]
+          - name: artist
+            label: Track-specific performer or composer (optional)
+            type: string
+          - name: note
+            label: Track notes (optional)
+            type: text
       - name: video_file
         label: Performance video file (small MP4 only)
         type: file

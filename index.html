@@ -147,9 +147,10 @@ layout: default
     {% assign featured_photo = nil %}
     {% for entry in photo_entries %}
       {% assign entry_audio = entry.audio_file | default: '' | strip %}
+      {% assign entry_audio_track_count = entry.audio_tracks.size | default: 0 %}
       {% assign entry_video = entry.video_file | default: '' | strip %}
       {% assign entry_video_url = entry.video_url | default: '' | strip %}
-      {% if entry_audio == '' and entry_video == '' and entry_video_url == '' and entry.cover != blank %}
+      {% if entry_audio == '' and entry_audio_track_count == 0 and entry_video == '' and entry_video_url == '' and entry.cover != blank %}
         {% assign featured_photo = entry %}
         {% break %}
       {% endif %}

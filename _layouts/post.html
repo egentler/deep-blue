@@ -112,11 +112,12 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
 {% assign db_post_video_file = page.video_file | default: '' | strip %}
 {% assign db_post_video_url = page.video_url | default: '' | strip %}
 {% assign db_post_audio_file = page.audio_file | default: '' | strip %}
+{% assign db_post_audio_track_count = page.audio_tracks.size | default: 0 %}
 {% assign db_post_captions_file = page.captions_file | default: '' | strip %}
 {% assign db_post_has_video = false %}
 {% assign db_post_has_audio = false %}
 {% if db_post_video_file != '' or db_post_video_url != '' %}{% assign db_post_has_video = true %}{% endif %}
-{% if db_post_audio_file != '' %}{% assign db_post_has_audio = true %}{% endif %}
+{% if db_post_audio_file != '' or db_post_audio_track_count > 0 %}{% assign db_post_has_audio = true %}{% endif %}
 {% if page.category == 'Writing' %}
 <style>
 /* Ordinary writing and poetry: single-spaced lines, one line between paragraphs.
@@ -186,6 +187,35 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
       <span class="db-post-audio-label">Listen to the composition</span>
       <audio controls preload="metadata" aria-label="{{ page.title | escape }}"><source src="{{ db_post_audio_file | relative_url }}">Your browser cannot play this audio. <a href="{{ db_post_audio_file | relative_url }}">Download the audio</a>.</audio>
     </div>
+  {% endif %}
+  {% if db_post_audio_track_count > 0 %}
+    <section class="db-track-collection" aria-label="Track listing for {{ page.title | escape }}">
+      <div class="db-track-collection-head">
+        <h2>Track list</h2>
+        <span>{{ db_post_audio_track_count }} {% if db_post_audio_track_count == 1 %}song{% else %}songs{% endif %}</span>
+      </div>
+      <ol class="db-track-list">
+        {% for track in page.audio_tracks %}
+          {% assign db_track_file = track.file | default: '' | strip %}
+          {% if db_track_file != '' %}
+          <li class="db-track-item">
+            <div class="db-track-heading">
+              <span class="db-track-index" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+              <div class="db-track-details">
+                <h3>{{ track.title | default: 'Untitled track' | escape }}</h3>
+                {% if track.artist and track.artist != '' %}<p class="db-track-artist">{{ track.artist | escape }}</p>{% endif %}
+                {% if track.note and track.note != '' %}<p class="db-track-note">{{ track.note | escape | newline_to_br }}</p>{% endif %}
+              </div>
+            </div>
+            <audio controls preload="none" aria-label="Play {{ track.title | default: 'track' | escape }}">
+              <source src="{{ db_track_file | relative_url | escape }}">
+              Your browser cannot play this audio. <a href="{{ db_track_file | relative_url | escape }}">Open the MP3</a>.
+            </audio>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </section>
   {% endif %}
   <div class="article-content{% if page.category == 'Writing' and page.cover and page.cover != '' %} article-content--illustrated{% endif %}">
     {% if page.category == 'Writing' and page.cover and page.cover != '' %}
