@@ -1,6 +1,7 @@
 ---
 title: Headlights
-date: 2026-10-25
+entry_uuid: 7680f6df-8a14-4be1-850e-bdbb963e12ad
+date: 2026-10-21
 category: Wavelengths
 published: true
 author: Dominic Powers
