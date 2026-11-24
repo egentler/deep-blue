@@ -1,7 +1,9 @@
 ---
 title: "Landscape Collection "
+entry_uuid: 0a4bab95-0490-4e60-88b2-cbf5b3c4afa0
 date: 2025-09-16
-category: Photography
+category: Wavelengths
+published: true
 author: Cadence Hansen
 cover: /assets/uploads/chcrop.jpg
 show_cover_in_series: false
