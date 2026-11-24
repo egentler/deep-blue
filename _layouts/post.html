@@ -112,6 +112,9 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
 {% assign db_post_video_file = page.video_file | default: '' | strip %}
 {% assign db_post_video_url = page.video_url | default: '' | strip %}
 {% assign db_post_audio_file = page.audio_file | default: '' | strip %}
+{% assign db_post_pdf_file = page.pdf_file | default: '' | strip %}
+{% assign db_post_has_pdf = false %}
+{% if db_post_pdf_file != '' %}{% assign db_post_has_pdf = true %}{% endif %}
 {% assign db_post_audio_track_count = page.audio_tracks.size | default: 0 %}
 {% assign db_post_captions_file = page.captions_file | default: '' | strip %}
 {% assign db_post_has_video = false %}
@@ -160,7 +163,34 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
 }
 </style>
 {% endif %}
-<article class="article-shell{% if db_post_has_audio or db_post_has_video %} article-shell--media{% endif %}">
+{% if db_post_has_pdf %}
+<style>
+/* Reusable PDF reader for submissions whose typography and page layout matter.
+   No PDF is converted to images or put into the ordinary artwork field. */
+.db-document-reader { margin: 20px 0 38px; }
+.db-document-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 17px 20px; background: #10303a; color: #e4f2ef; }
+.db-document-identity { display: flex; align-items: center; gap: 12px; font: 700 11px/1.4 'DM Sans', Arial, sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+.db-document-identity::before { content: "PDF"; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 40px; border: 1px solid #a6c6c5; border-radius: 2px; color: #d6ece7; font-size: 10px; letter-spacing: 0; }
+.db-document-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.db-document-actions a { color: #d1e6e3; font: 700 11px/1.5 'DM Sans', Arial, sans-serif; letter-spacing: .05em; text-decoration: underline; text-underline-offset: 4px; }
+.db-document-actions a:hover, .db-document-actions a:focus-visible { color: #fff; }
+.db-document-stage { padding: 16px; background: #e1e9e6; border: 1px solid #ccd8d5; border-top: 0; }
+.db-document-stage iframe { display: block; width: 100%; height: 76vh; min-height: 620px; max-height: 980px; border: 0; background: #fff; }
+.db-document-mobile { display: none; }
+.db-document-intro { margin: 12px auto 28px; }
+@media (max-width: 760px) {
+  .db-document-toolbar { padding: 17px 16px; }
+  .db-document-stage { display: none; }
+  .db-document-mobile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 17px; padding: 30px 22px 32px; background: #e1e9e6; border: 1px solid #ccd8d5; border-top: 0; }
+  .db-document-mobile .db-document-thumb { display: block; width: min(78%, 265px); max-height: 300px; object-fit: contain; background: #f9faf6; box-shadow: 0 5px 20px #0e2a3433; }
+  .db-document-mobile .db-document-symbol { display: flex; align-items: center; justify-content: center; width: 92px; height: 118px; border: 2px solid #789b9a; border-radius: 3px; background: #f5f7f4; color: #35636b; font: 700 19px/1 'DM Sans', Arial, sans-serif; letter-spacing: .1em; }
+  .db-document-mobile p { color: #3b6165; margin: 0; max-width: 290px; font: 400 14px/1.55 'DM Sans', Arial, sans-serif; }
+  .db-document-mobile .db-document-mobile-open { background: #13414c; color: #fff; text-decoration: none; padding: 13px 23px; font: 700 11px/1.4 'DM Sans', Arial, sans-serif; text-transform: uppercase; letter-spacing: .12em; }
+  .db-document-mobile .db-document-mobile-open:hover, .db-document-mobile .db-document-mobile-open:focus-visible { background: #28616b; }
+}
+</style>
+{% endif %}
+<article class="article-shell{% if db_post_has_audio or db_post_has_video %} article-shell--media{% endif %}{% if db_post_has_pdf %} article-shell--pdf{% endif %}">
   <div class="article-eyebrow">{% if page.category == 'Photography' %}Wavelengths{% else %}{{ page.category | escape }}{% endif %} · {{ page.date | date: "%B %-d, %Y" }}{% if page.sample %} · Example entry{% endif %}</div>
   <h1 class="article-title">{{ page.title | escape }}</h1>
   {% if page.summary %}<p class="article-summary">{{ page.summary | escape }}</p>{% endif %}
@@ -217,6 +247,34 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
       </ol>
     </section>
   {% endif %}
+  {% if db_post_has_pdf %}
+    {% assign db_document_introduction = content | strip_html | strip %}
+    {% if db_document_introduction != '' %}
+    <div class="article-content db-document-intro">{{ content }}</div>
+    {% endif %}
+    <section class="db-document-reader" aria-label="Read {{ page.title | escape }} as a PDF">
+      <div class="db-document-toolbar">
+        <div class="db-document-identity">Document edition</div>
+        <div class="db-document-actions">
+          <a href="{{ db_post_pdf_file | relative_url | escape }}" target="_blank" rel="noopener">Open full PDF ↗</a>
+          <a href="{{ db_post_pdf_file | relative_url | escape }}" download>Download PDF ↓</a>
+        </div>
+      </div>
+      <div class="db-document-stage">
+        <iframe src="{{ db_post_pdf_file | relative_url | escape }}#toolbar=1" title="Read PDF: {{ page.title | escape }}" loading="lazy"></iframe>
+      </div>
+      <div class="db-document-mobile">
+        {% if page.cover and page.cover != '' %}
+        <img class="db-document-thumb" src="{{ page.cover | relative_url | escape }}" alt="Document cover for {{ page.title | escape }}" loading="lazy">
+        {% else %}
+        <div class="db-document-symbol" aria-hidden="true">PDF</div>
+        {% endif %}
+        <p>Read the complete original document, with its formatting and page design preserved.</p>
+        <a class="db-document-mobile-open" href="{{ db_post_pdf_file | relative_url | escape }}" target="_blank" rel="noopener">Open document ↗</a>
+      </div>
+    </section>
+  {% endif %}
+  {% unless db_post_has_pdf %}
   <div class="article-content{% if page.category == 'Writing' and page.cover and page.cover != '' %} article-content--illustrated{% endif %}">
     {% if page.category == 'Writing' and page.cover and page.cover != '' %}
       <figure class="article-inline-illustration">
@@ -226,6 +284,7 @@ body:has(.deepblue-comic-reader) > .footer { display: none; }
     {% endif %}
     {{ content }}
   </div>
+  {% endunless %}
   <a class="article-back" href="{{ '/' | relative_url }}#latest">← Return to the journal</a>
 </article>
 {% endif %}

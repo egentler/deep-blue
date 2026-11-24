@@ -104,6 +104,12 @@ content:
         label: Text preview (especially for writing)
         type: text
         description: Optional few lines used on the homepage when no cover image is provided
+      - name: pdf_file
+        label: PDF document (special-format writing)
+        type: file
+        options:
+          extensions: [pdf]
+        description: Optional. Select a PDF from assets/uploads (or upload a small PDF) for a story, screenplay, or other piece whose formatting must stay intact. The post will display a document reader and an Open PDF link. Leave this empty for normal writing; do not paste the PDF text into the body.
       - name: cover
         label: Photo or artwork
         type: image
