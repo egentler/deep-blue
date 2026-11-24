@@ -1,7 +1,9 @@
 ---
 title: Nature Collection
+entry_uuid: 0689718f-6794-45fe-bac0-59208a5e4a1b
 date: 2025-02-16
-category: Photography
+category: Wavelengths
+published: true
 author: Asa Davis
 cover: /assets/uploads/asacrop.jpg
 show_cover_in_series: false
